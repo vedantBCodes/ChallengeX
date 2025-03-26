@@ -1,20 +1,19 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap';
-import Puzzle from '../Images/15PuzzleImage.webp';
+import './homePage.css'
 
 
-const TaskCard = () => {
+const TaskCard = ({img,title,desc}) => {
   return (
    <>
-   <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={Puzzle} />
+   <Card style={{ width: '18rem' }} className="custom-card">
+      <Card.Img variant="top" src={img} style={{height:'300px'}} />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{title}</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+         {desc}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary">Start the Game</Button>
       </Card.Body>
     </Card>
    </>
