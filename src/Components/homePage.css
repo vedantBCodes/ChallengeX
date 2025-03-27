@@ -172,22 +172,82 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
 }
 /* start ---> CSS style for the 12 tasks section */
 .card-wrapper {
-    padding: 10px;
-  }
-  
-  .custom-card img {
-    max-height: 200px; /* To control image size */
-    object-fit: cover;
-  }
-  
-  .card-slider {
-    overflow: hidden; /* Hide overflow during slide */
-  }
-  
-  .card-track {
-    display: flex; /* Cards in a horizontal line */
-    transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
-  }
-  
+  padding: 10px;
+}
+
+.custom-card img {
+  max-height: 200px; /* To control image size */
+  object-fit: cover;
+}
+
+.card-slider {
+  overflow: hidden; /* Hide overflow during slide */
+}
+
+.card-track {
+  display: flex; /* Cards in a horizontal line */
+  transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
+}
+
   
 /* end ---> CSS style for the 12 tasks section */
+
+#emailBtn
+{
+  color: blue;
+  border: 1px solid blue;
+  padding: 10px 40px;
+  margin: 5px;
+  background-color:rgb(240, 237, 237);
+  border-radius: 5px;
+}
+#emailBtn:hover
+{
+  color: white;
+  background-color: blue;
+  transition: 1s;
+}
+#emailInput
+{
+  padding:7px 40px;
+  font-size:20px;
+  color:'blue';
+  border:1px solid blue;
+  border-radius: 5px;
+}
+#emailInput::placeholder {
+  color: blue;
+}
+.copyrightLine
+{
+  padding: 10px 0px;
+  color: white;
+  background-color: black;
+}
+.footer
+{
+  background-color: black;
+  margin-bottom: -10px;
+}
+.subscribeBox
+{
+  color: blue;
+  padding: 10px;
+  border : 1px solid blue;
+  border-radius: 5px;
+  background-color: rgb(219, 223, 226);
+}
+.subscribeBox:hover
+{
+  background-color: white;
+  transition: 1s;
+}
+.icons
+{
+  width: 30px;
+}
+.icons:hover
+{
+  box-shadow: 2px 2px 2px white;
+  transition: 1s;
+}
