@@ -20,6 +20,7 @@ const Navbar_01 = () => {
           </Navbar.Collapse>
         </Container>
     </Navbar>
+    
       
    </>
   )

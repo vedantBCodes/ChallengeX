@@ -1,0 +1,50 @@
+.matchPairContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+#matchPairBtn {
+    width: 100%; /* Let the grid manage the layout */
+    height: 70px; /* Consistent button size */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  #matchPairInput {
+    padding: 10px 20px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 7px;
+    color: white;
+    background-color: black;
+  }
+  
+  #matchPairInput:hover {
+    color: black;
+    background-color: rgb(244, 238, 238);
+    transition: 1s;
+  }
+  
+  #attempts {
+    height: 10vh;
+  }
+  
+  .matchPairMainContainer h1 {
+    padding: 10px 20px;
+    font-size: 25px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+  }
+
+  
+  .MatchPairGridContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 10px; /* Spacing between buttons */
+    width: 300px; /* Width for the entire grid */
+  }
+  
+
+    

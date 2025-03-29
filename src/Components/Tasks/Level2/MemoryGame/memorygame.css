@@ -1,0 +1,45 @@
+.memoryGameMainContainer h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .memoryGameGridContainer {
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+  }
+  
+  .memoryGameBox {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .memoryGameBox.colored {
+    background-color: yellowgreen; /* Color when showing pattern */
+  }
+  
+  .memoryGameBox.correct {
+    background-color: yellowgreen; /* Color when user clicks correctly */
+  }
+  
+  #memoryGameBtn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  #memoryGameBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  

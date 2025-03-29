@@ -1,0 +1,40 @@
+.calculatingSpeedMainContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calculatingSpeedContainer
+{
+    padding: 20px;
+    background-color: rgb(252, 253, 255);
+    box-shadow: 2px 2px 2px 2px rgb(222, 222, 222);
+}
+
+.calculatingSpeedContainer > input
+{
+    padding: 10px 20px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(240, 242, 244);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(229, 228, 228);
+}
+.calculatingSpeedContainer > button
+{
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 20px;
+}
+.gameOverStatement
+{
+    color: red;
+    font-size: 50px;
+    transform: rotate(-45deg); /* Rotate text by 45 degrees */
+    position: absolute;
+    top: 130px;
+    /* right: 1px; */
+}

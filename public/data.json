@@ -1,16 +1,15 @@
-
 [
-    { "id": 1 ,"title": "15Puzzle", "text": "15-puzzle is a classic sliding puzzle consisting of numbered tiles arranged in a 4x4 grid" },
-    { "id": 2 ,"title": "Suduko", "text": "Sudoku is a logic-based number puzzle where players fill a 9x9 grid with digits from 1 to 9" },
-    { "id": 3 ,"title": "Tic-Tac-Toe", "text": "Tic-Tac-Toe is a classic two-player game where players take turns marking Xs and Os on a 3x3 grid" },
-    { "id": 4 ,"title": "Word Search", "text": "Word Search is a classic puzzle game where players find and highlight hidden words " },
-    { "id": 5 ,"title": "15Puzzle", "text": "15-puzzle is a classic sliding puzzle consisting of numbered tiles arranged in a 4x4 grid" },
-    { "id": 6 ,"title": "Suduko", "text": "Sudoku is a logic-based number puzzle where players fill a 9x9 grid with digits from 1 to 9" },
-    { "id": 7 ,"title": "Tic-Tac-Toe", "text": "Tic-Tac-Toe is a classic two-player game where players take turns marking Xs and Os on a 3x3 grid" },
-    { "id": 8 ,"title": "Word Search", "text": "Word Search is a classic puzzle game where players find and highlight hidden words " },
-    { "id": 9 ,"title": "15Puzzle", "text": "15-puzzle is a classic sliding puzzle consisting of numbered tiles arranged in a 4x4 grid" },
-    { "id": 10 ,"title": "Suduko", "text": "Sudoku is a logic-based number puzzle where players fill a 9x9 grid with digits from 1 to 9" },
-    { "id": 11 ,"title": "Tic-Tac-Toe", "text": "Tic-Tac-Toe is a classic two-player game where players take turns marking Xs and Os on a 3x3 grid" },
-    { "id": 12 ,"title": "Word Search", "text": "Word Search is a classic puzzle game where players find and highlight hidden words " }
+    { "id": 1 ,"title": "Simple Quiz", "text": "15-puzzle is a classic sliding puzzle consisting of numbered tiles arranged in a 4x4 grid", "path":"/quiz" },
+    { "id": 2 ,"title": "Tic-Tac-Toe", "text": "Tic-Tac-Toe is a classic two-player game where players take turns marking Xs and Os" , "path":"/tictactoe"},
+    { "id": 3 ,"title": "Guessing game", "text": "A number guessing game where the one tries to guess a random number between 1 and 100", "path":"/guessingGame" },
+    { "id": 4 ,"title": "Word Search", "text": "Word Search is a classic puzzle game where players find and highlight hidden words ", "path":"" },
+    { "id": 5 ,"title": "Memory game", "text": "It is a  game where game where user remembers the colored boxes displayed and click on the boxes once the game starts .", "path":"/memoryGame" },
+    { "id": 6 ,"title": "Matching pairs", "text": "A fun matching pairs game where users flip cards to reveal hidden images and try to match pairs by remembering their positions", "path":"/matchPair" },
+    { "id": 7 ,"title": "Typing speed test", "text": "A typing speed test game where users type given words or sentences as quickly and accurately as possible within a set time limit.", "path":"/typingSpeedTest" },
+    { "id": 8 ,"title": "Color spotters", "text": "A color spotter game where the user identifies and clicks on the odd-colored tile among a grid of tiles within a limited time.", "path":"/colorSpotter" },
+    { "id": 9 ,"title": "15Puzzle", "text": "15-puzzle is a classic sliding puzzle consisting of numbered tiles arranged in a 4x4 grid", "path":"/fifteenPuzzle" },
+    { "id": 10 ,"title": "Rapid fire", "text": "It is a rapid-fire quiz game where users answer as many questions as possible within a perticular time limit." , "path":""},
+    { "id": 11 ,"title": "Calculating speed ", "text": "It tests your calculating speed by presenting mathematical expressions that need to solve within a set time.", "path":"/calculatingSpeed" },
+    { "id": 12 ,"title": "Suduku Game", "text": "A classic puzzle game where the objective is to fill a 9x9 grid with numbers from 1 to 9 .", "path":"/suduku" }
   ]
   

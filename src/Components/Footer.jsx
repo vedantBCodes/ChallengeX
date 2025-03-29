@@ -52,7 +52,7 @@ const Footer = () => {
       </Container>
 
       <hr style={{border:'1px solid white'}}/>
-      <h4 class="text-center copyrightLine" style={{fontSize:'15px'}}>
+      <h4 class="text-center copyrightLine" style={{fontSize:'17px'}}>
      copyright&nbsp;<img src={copyrightLogo} alt="" width={20} />&nbsp;.&nbsp;Made with
      <img src={heartLogo} alt="" width={25} /> by vedant yeotikar.
      All rights reserved .
