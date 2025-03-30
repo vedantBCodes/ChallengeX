@@ -68,7 +68,7 @@ function onStartBtnHandle()
    <>
    <main className="guessingGameMainContainer">
    <div className="guessingGameContainer">
-        <h1>Guess the number</h1>
+        <h3>Guess the number</h3>
         <p style={{fontSize:'25px'}}>Guess number between 0 to 100</p>
         <input type="number" placeholder="Enter a number" min="0" max="100" ref={input} id='guessingGameInput'/>
         <div id="Btns">

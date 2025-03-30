@@ -1,5 +1,4 @@
-// import TaskCard from './TaskCard';
-// import './homePage.css'
+
 import quizGameImage from '../Images/quizGameImage.webp';
 import tictactoeImage from '../Images/tic-tac-toeImage.webp';
 import guessingGameImage from '../Images/guessingGameImage.webp';
@@ -12,10 +11,7 @@ import PuzzleImage from '../Images/15PuzzleImage2.webp';
 import rapidFireImage from '../Images/rapidFireImage.webp'
 import calculatingSpeedTest from '../Images/calculatingSpeedTest.png'
 import sudukuImage from '../Images/sudukuTaskImage.webp';
-import Guessinggame from './Tasks/Level1/GuessingGame/Guessinggame';
 import { Link } from 'react-router-dom';
-
-
 
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';

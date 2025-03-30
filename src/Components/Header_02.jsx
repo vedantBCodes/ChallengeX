@@ -8,13 +8,15 @@ const Header_02 = () => {
           <h1>Money Doesn't Grow on Trees, But It Can Grow From Tasks!</h1>
           <h6>- Vedant Yeotikar</h6>
           <p>
-            <button>Contact Us</button>
+           <Button variant="light" style={{ color: 'black', backgroundColor: 'white', borderColor: 'white' }}>
+      Contact Me
+    </Button>
           </p>
         </div>
       </div>
       <Container className="mt-5">
         <Row className="d-flex , justify-content-start">
-          <Col md={5} className=" text-white p-3">
+          <Col md={6} className=" text-white p-3">
             <p
               style={{ textAlign: "left", fontWeight: "900" }}
               className="fs-1"
@@ -27,7 +29,6 @@ const Header_02 = () => {
           </Col>
           <Col md={5} className="p-3">
             {" "}
-            <br />
             <Button id="earningBtn">Start Earning Today</Button>
           </Col>
         </Row>
@@ -130,7 +131,7 @@ const Header_02 = () => {
             </div>
             <br />
             <h4 style={{ textAlign: "left" }}>Fair</h4>
-            <p style={{ textAlign: "left" }}>
+            <p style={{ textAlign: "left" ,fontSize:'20px' }}>
               Earn at least &#8377; 8.00 per task—often with bigger payments and
               incentives.
             </p>
@@ -147,7 +148,7 @@ const Header_02 = () => {
             </div>
             <br />
             <h4 style={{ textAlign: "left" }}>Flexible</h4>
-            <p style={{ textAlign: "left" }}>
+            <p style={{ textAlign: "left" ,fontSize:'20px'}}>
               Choose the studies you want to take part in. Exit at any time, for
               any reason.{" "}
             </p>
@@ -164,7 +165,7 @@ const Header_02 = () => {
             </div>
             <br />
             <h4 style={{ textAlign: "left" }}>Fun</h4>
-            <p style={{ textAlign: "left" }}>
+            <p style={{ textAlign: "left" ,fontSize:'20px'}}>
               Explore, contribute to, and learn from all kinds of interesting
               tasks.It will be fun .
             </p>

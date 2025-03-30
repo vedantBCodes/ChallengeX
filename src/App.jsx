@@ -17,6 +17,7 @@ import ColorSpotter from './Components/Tasks/Level2/ColorSpotter/ColorSpotter';
 import FifteenPuzzle from './Components/Tasks/Level3/FifteenPuzzle/FifteenPuzzle';
 import Calculatingspeed from './Components/Tasks/Level3/CalculatingSpeed/Calculatingspeed';
 import Suduko from './Components/Tasks/Level3/Suduku/Suduko';
+import MidSection from './Components/MidSection';
 
 // import TicTacToe  from './Components/Tasks/Level1/Tic-Tac-Toe/TicTacToe'
 
@@ -45,21 +46,21 @@ function App() {
       <Route path="/" element={ <><Navbar/>
        <Header_02/>
        <TasksPage_03/>
-       <JoinNowSection_04/>
+       <MidSection/>
        <CommunitySection_05/>
+       <JoinNowSection_04/>
       <Footer/>
       </>} />
-      <Route path="/join" element={<JoinNowSection_04 />} />
-      <Route path="/quiz" element={<Quiz />} />
-      <Route path="/tictactoe" element={<TicTacToe/>} />
-      <Route path="/guessingGame" element={<Guessinggame/>} />
-      <Route path="/matchPair" element={<MatchPair/>} />
-      <Route path="/typingSpeedTest" element={<TypingSpeedTest/>} />
-      <Route path="/memoryGame" element={<MemoryGame/>} />
-      <Route path="/colorSpotter" element={<ColorSpotter/>} />
-      <Route path="/fifteenPuzzle" element={<FifteenPuzzle/>} />
-      <Route path="/calculatingSpeed" element={<Calculatingspeed/>} />
-      <Route path="/suduku" element={<Suduko/>} />
+      <Route path="/quiz" element={<><Navbar/> <Quiz /></>} />
+      <Route path="/tictactoe" element={<><Navbar/><TicTacToe/></>} />
+      <Route path="/guessingGame" element={<><Navbar/><Guessinggame/></>} />
+      <Route path="/matchPair" element={<><Navbar/><MatchPair/></>} />
+      <Route path="/typingSpeedTest" element={<><Navbar/><TypingSpeedTest/></>} />
+      <Route path="/memoryGame" element={<><Navbar/><MemoryGame/></>} />
+      <Route path="/colorSpotter" element={<><Navbar/><ColorSpotter/></>} />
+      <Route path="/fifteenPuzzle" element={<><Navbar/><FifteenPuzzle/></>} />
+      <Route path="/calculatingSpeed" element={<><Navbar/><Calculatingspeed/></>} />
+      <Route path="/suduku" element={<><Navbar/><Suduko/></>} />
     </Routes>
   </Router>
      

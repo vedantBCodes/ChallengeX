@@ -1,3 +1,8 @@
+main
+{
+  background-color: rgb(194, 191, 189);
+  height: 92.5vh;
+}
 .quizMainContainer
 {
   width: 100vw;
@@ -11,7 +16,7 @@
 }
 .quizSubContainer
 {
-  width: 50vw;
+  /* width: 100vw; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,6 +25,9 @@
   gap: 20px;
   padding: 40px 0px;
   box-shadow: 2px 2px 2px 2px rgb(173, 170, 170);
+  border-radius: 10px;
+  background-color: rgb(229, 228, 226);
+  margin: 10px 10px;
 }
 .options
 {
@@ -33,7 +41,7 @@
 }
 .options button
 {
-  width: 60%;
+  width: 90%;
   border: none;
   padding: 13px;
   box-shadow: 2px 2px 2px 2px rgb(210, 206, 206);
@@ -42,7 +50,7 @@
 #next
 {
   width: 100px;
-  height: 20px;
+  height: 40px;
   color: white;
   background-color: black;
   border-radius: 5px;
@@ -61,11 +69,11 @@
 }
 .qsuccess
 {
-  height: 50vh;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: antiquewhite;
+  background-color: rgb(242, 238, 234);
   border: none;
 }

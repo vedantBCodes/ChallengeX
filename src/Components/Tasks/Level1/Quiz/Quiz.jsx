@@ -4,7 +4,7 @@ import data from './data.js'
 import './quiz.css'
 
 function Quiz() {
-  const [index,SetIndex] = useState(0);
+    const [index,SetIndex] = useState(0);
     const [count,SetCount] = useState(0);
     const [Question,SetQuestion] = useState(data[index]);
     const [lock,SetLock] = useState(false);
@@ -15,7 +15,6 @@ function Quiz() {
       {
       if(Question.ans==ans)
       {
-        // alert('Yess');
         e.target.classList.add("correct");
         SetCount(count+1);
         SetLock(true);
@@ -23,7 +22,6 @@ function Quiz() {
       }
       else
       {
-        // alert('Noo');
           e.target.classList.add("wrong");
           SetLock(true);
           SetClickedAns(e.target);
@@ -60,11 +58,12 @@ function Quiz() {
     }
     return (
       <>
-        
+      <main>       
+         <h2>Computer Fundamentals Quiz</h2>
         <div className="quizMainContainer">
           {
              <div className="quizSubContainer">
-             <h1>{index+1} . {Question.question}</h1>
+             <h4>{index+1} . {Question.question}</h4>
              <div className='options'>
              <button onClick={(e)=>{checkForAnswers(e,1)}}>{Question.option1}</button>
              <button onClick={(e)=>{checkForAnswers(e,2)}}>{Question.option2}</button>
@@ -75,8 +74,9 @@ function Quiz() {
              <p>{index+1} of 5 questions</p>
            </div>
           }
-         
         </div>
+        </main>
+
       </>
     )
   }

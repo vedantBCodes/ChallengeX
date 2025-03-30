@@ -44,7 +44,7 @@ const Footer = () => {
       <p><img src={instaLogo} alt="" class="icons"/> &nbsp;&nbsp;
         <img src={facebookLogo} alt="" class="icons"/>  &nbsp;&nbsp;
         <img src={youtubeIcon} alt="" class="icons"/>  &nbsp;&nbsp;
-        <img src={githubIcon} alt="" class="icons"/>  &nbsp;&nbsp;
+        <a href="https://github.com/vedantBCodes" target='_blank'><img src={githubIcon} alt="" class="icons"/></a> &nbsp;&nbsp;
         <img src={twitterIcon} alt="" class="icons"/>  &nbsp;&nbsp;
       </p>
           </Col>

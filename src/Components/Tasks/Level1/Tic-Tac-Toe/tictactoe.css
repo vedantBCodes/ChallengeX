@@ -1,54 +1,65 @@
 .tictactoeContainer {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    margin: 0;
-  }
-  
-  .game {
-    text-align: center;
-  }
-  
-  .board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 10px;
-    margin: 20px auto;
-  }
-  
-  .square {
-    width: 100px;
-    height: 100px;
-    background-color: #7fffd4;
-    font-size: 36px;
-    font-weight: bold;
-    border: 2px solid #333;
-    cursor: pointer;
-  }
-  
-  .square:hover {
-    background-color: #98fb98;
-  }
-  
-  .tstatus {
-    font-size: 24px;
-    margin: 20px 0;
-  }
-  
-  .reset-button {
-    padding: 10px 20px;
-    background-color: #ff4500;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .reset-button:hover {
-    background-color: #ff6347;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 92.5vh;
+  flex-direction: column;
+  background-color: rgb(194, 191, 189);
+}
+
+.game {
+  text-align: center;
+  background-color: rgb(234, 233, 232);
+  padding: 20px 30px;
+  border: 5px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px black;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  width: 80px;   /* Set fixed width */
+  height: 80px;  /* Set fixed height */
+  font-size: 36px;  /* Font size to keep 'X' and 'O' big but not resize the box */
+  margin: 5px;
+  text-align: center;
+  background-color: rgb(200, 202, 203);
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px black;
+}
+
+.square:hover {
+  background-color: rgb(234, 236, 237);
+  transition: 1s;
+}
+
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  background-color: #45a049;
+}
+
+.tstatus {
+  font-size: 20px;
+  margin: 10px 0;
+}

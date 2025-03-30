@@ -5,7 +5,7 @@ import { Container,Col,Row } from 'react-bootstrap'
 const JoinNowSection_04 = () => {
   return (
     <>
-    <Container className="mt-5">
+    <Container className="mt-0">
         <Row className='d-flex , justify-content-center'>
           <Col md={5} className=" text-white p-3">
           <p style={{textAlign:'left',fontWeight:'300',fontSize:'40px',lineHeight:'1.2'}} >Take the next step toward your personal and professional goals with ChallengeX.</p>

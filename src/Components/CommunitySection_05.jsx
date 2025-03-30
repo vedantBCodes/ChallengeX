@@ -8,7 +8,7 @@ import moreAbhijeet from "../Images/communityImage3.png";
 const CommunitySection_05 = () => {
   return (
     <>
-      <Container className="mt-5">
+      <Container className="mt-3">
         <Row className="d-flex , justify-content-center">
           <Col md={10}>
             <h1>From the ChallengeX community</h1>

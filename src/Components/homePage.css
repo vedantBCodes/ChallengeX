@@ -2,15 +2,19 @@
 {
     color: black;
 }
-
+.navbar , .navContainer
+{
+  background-color: black;
+}
 .navContainer
 {
     /* background-color: rgb(240, 241, 242); */
     /* color: black; */
     width: 100vw;
-    background-color: rgb(0, 0, 0);
+    height: 5vh;
     color: white;
 }
+
 .navContainer h1
 {
     font-weight: bolder;
@@ -22,9 +26,9 @@
     /* font:'bolder', */
     /* fontSize:'100px'; */ 
 }
-h1 img
+.navContainer
 {
-    border-radius: 50%;
+  color: black;
 }
 .headerContainer
 {
@@ -59,13 +63,6 @@ h1 img
 .headerSubContainer p
 {
     text-align: center;
-}
-.headerSubContainer button
-{
-    padding: 10px;
-    font-size: 40px;
-    border-radius: 5px;
-    font-size: 25px;
 }
 .cardContainer
 {
@@ -114,6 +111,10 @@ h1 img
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);  /* Shadow effect */
     background-color: #f8f9fa;  /* Light background change */
   }
+.midsectiondiv
+{
+  display: inline-block;
+}
 #joinBtn
   {
     color: blue;
@@ -129,18 +130,48 @@ h1 img
     padding: 20px 40px;
     border: none;
     font-size: 20px;
+    margin-top: 50px;
+}
+@media (max-width:770px)
+{
+  #earningBtn
+{
+    background-color: rgb(52, 220, 22);
+    border-radius: 50px;
+    padding: 20px 40px;
+    border: none;
+    font-size: 20px;
+    margin-top: -50px;
+}
 }
 #earningBtn:hover
 {
     opacity: 0.5;
     transition: 1s;
 }
-  #joinBtn:hover
+#joinBtn:hover
   {
     background-color: blue;
     color: white;
     transition: 1s;
   }
+.midsectionContainer
+{
+  width: 100vw;
+}
+.midsectionContainer  img
+  {
+    border-radius: 20px;
+  }
+.midsectionSubContainer
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  gap: 30px;
+}
 .globalCommunity
 {
     padding: 50px 0px;

@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(232, 230, 229);
 }
 .guessingGameContainer
 {
@@ -11,9 +12,10 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    border-radius: 10px;
     background-color: rgb(255, 255, 255);
-    box-shadow: 2px 2px 2px 4px rgb(216, 215, 215);
-    /* height: 60vh; */
+    box-shadow: 2px 2px 2px 4px rgb(110, 109, 109);
+    height: 50vh;
     padding: 20px;
 }
 #guessingGameInput
@@ -23,7 +25,7 @@
     font-size: 25px;
     border-radius: 5px;
 }
-.guessingGameContainer h1
+.guessingGameContainer h3
 {
     background-color:rgb(225, 220, 214);
     padding: 10px 20px;
