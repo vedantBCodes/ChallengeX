@@ -50,6 +50,7 @@ function FifteenPuzzle() {
   };
 
   return (
+    <main>
     <div className="puzzleContainer">
       <h1>15 Puzzle Game</h1>
       <p>Total Moves: {moveCount}</p>
@@ -69,6 +70,7 @@ function FifteenPuzzle() {
       </div>
       <button id="puzzleResetBtn" onClick={resetGame}>Reset</button>
     </div>
+    </main>
   );
 }
 

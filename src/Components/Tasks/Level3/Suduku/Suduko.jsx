@@ -36,7 +36,8 @@ const Suduko = () => {
       };
     
       return (
-        <div className="sudukuContainer">
+        <div className="mainContainer">    
+          <div className="sudukuContainer">
           <h1>Sudoku Game</h1>
           <SudokuGrid board={board} handleInputChange={handleInputChange} />
           <div className="buttons">
@@ -44,6 +45,8 @@ const Suduko = () => {
             <button onClick={resetBoard}>Reset</button>
           </div>
         </div>
+        </div>
+
       );
     }
 

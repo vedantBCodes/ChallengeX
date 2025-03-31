@@ -276,6 +276,7 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
 .icons
 {
   width: 30px;
+  box-shadow: 1px 1px 1px 1px white;
 }
 .icons:hover
 {

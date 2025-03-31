@@ -49,7 +49,6 @@ function TasksPage_03() {
               <Card className="custom-card mb-4">
                 <Card.Img variant="top" src={images[index]} />
                 <Card.Body>
-                    {/* <img src={images[index]} alt="" /> */}
                   <Card.Title>{card.title}</Card.Title>
                   <Card.Text>{card.text}</Card.Text>
                   <Button className='bg-primary'><Link to={card.path} className='text-white text-decoration-none'>Start the Game</Link></Button>

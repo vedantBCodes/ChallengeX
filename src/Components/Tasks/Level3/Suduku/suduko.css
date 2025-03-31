@@ -1,4 +1,9 @@
-  .sudukuContainer {
+.mainContainer
+{
+  background-color: rgb(246, 242, 240);
+  height: 92.5vh;
+}
+.sudukuContainer {
     display: flex;
     flex-direction: column;
     align-items: center;

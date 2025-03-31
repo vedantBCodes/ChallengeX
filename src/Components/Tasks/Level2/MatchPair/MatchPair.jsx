@@ -80,6 +80,7 @@ function MatchPair() {
   };
 
   return (
+    <main>
     <div className="matchPairMainContainer">
       <h1>Matching Game</h1>
       <div id="attempts">
@@ -104,6 +105,7 @@ function MatchPair() {
     </div> <br />
       <input type="button" value="Restart Game" onClick={() => setRandomSymbols()} id="matchPairInput"/>
     </div>
+    </main>
   );
 }
 

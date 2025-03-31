@@ -52,6 +52,7 @@ const MemoryGame = () => {
   };
 
   return (
+    <main>
     <div className="memoryGameMainContainer">
       <h1>Memory Game</h1>
       <p>Level: {level}</p>
@@ -85,6 +86,7 @@ const MemoryGame = () => {
         </div>
       )}
     </div>
+    </main>
   );
 };
 

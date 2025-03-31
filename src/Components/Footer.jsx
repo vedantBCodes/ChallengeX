@@ -13,9 +13,9 @@ import youtubeIcon from '../Images/SocialMediaIcons/youtubeIcon2.svg'
 const Footer = () => {
   return (
    <>
-    <Container className="mt-1 mb-4 text-align-center " >
+    <Container className="mt-1 mb-3 text-align-center " >
         <Row className='d-flex justify-content-center align-items-center'>
-          <Col md={8}  className='p-5 pt-3 pb-4' style={{backgroundColor:'rgb(223, 231, 222)'}}>
+          <Col md={8}  className='p-5 pt-3 pb-4' style={{backgroundColor:'rgb(223, 231, 222)',borderRadius:'10px'}}>
           <img src={emailIcon} alt="" width={50}/>
           <p style={{color:'rgb(109, 214, 107)',fontSize:'20px'}}>Save this article</p>
           <p>Enter your email address and we'll send straight to your inbox .</p>
@@ -29,7 +29,7 @@ const Footer = () => {
       </Container>
 
       <div className='footer'>
-      <Container className="mt-1  text-align-center " style={{backgroundColor:'black'}}>
+      <Container className="mt-0  text-align-center " style={{backgroundColor:'black'}}>
         <Row className='d-flex justify-content-center align-items-center'>
           <Col md={6}>
           <p style={{fontSize:'40px',color:'white'}}>Don't miss out</p>
@@ -41,9 +41,9 @@ const Footer = () => {
           </Col>
           <Col md={4}>
           <p style={{color:'white',fontSize:'20px'}}>Get in touch</p>
-      <p><img src={instaLogo} alt="" class="icons"/> &nbsp;&nbsp;
-        <img src={facebookLogo} alt="" class="icons"/>  &nbsp;&nbsp;
-        <img src={youtubeIcon} alt="" class="icons"/>  &nbsp;&nbsp;
+      <p><img src={instaLogo} alt="" class="icons"/> &nbsp;&nbsp;&nbsp;
+        <img src={facebookLogo} alt="" class="icons"/>  &nbsp;&nbsp;&nbsp;
+        <img src={youtubeIcon} alt="" class="icons"/>  &nbsp;&nbsp;&nbsp;
         <a href="https://github.com/vedantBCodes" target='_blank'><img src={githubIcon} alt="" class="icons"/></a> &nbsp;&nbsp;
         <img src={twitterIcon} alt="" class="icons"/>  &nbsp;&nbsp;
       </p>

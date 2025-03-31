@@ -14,7 +14,7 @@ const Header_02 = () => {
           </p>
         </div>
       </div>
-      <Container className="mt-5">
+      <Container className="mt-1">
         <Row className="d-flex , justify-content-start">
           <Col md={6} className=" text-white p-3">
             <p

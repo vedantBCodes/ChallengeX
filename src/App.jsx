@@ -18,6 +18,7 @@ import FifteenPuzzle from './Components/Tasks/Level3/FifteenPuzzle/FifteenPuzzle
 import Calculatingspeed from './Components/Tasks/Level3/CalculatingSpeed/Calculatingspeed';
 import Suduko from './Components/Tasks/Level3/Suduku/Suduko';
 import MidSection from './Components/MidSection';
+import WordSearch from './Components/Tasks/Level1/WordSearch/WordSearch';
 
 // import TicTacToe  from './Components/Tasks/Level1/Tic-Tac-Toe/TicTacToe'
 
@@ -54,6 +55,7 @@ function App() {
       <Route path="/quiz" element={<><Navbar/> <Quiz /></>} />
       <Route path="/tictactoe" element={<><Navbar/><TicTacToe/></>} />
       <Route path="/guessingGame" element={<><Navbar/><Guessinggame/></>} />
+      <Route path="/wordsearch" element={<><Navbar/><WordSearch/></>} />
       <Route path="/matchPair" element={<><Navbar/><MatchPair/></>} />
       <Route path="/typingSpeedTest" element={<><Navbar/><TypingSpeedTest/></>} />
       <Route path="/memoryGame" element={<><Navbar/><MemoryGame/></>} />
@@ -61,6 +63,7 @@ function App() {
       <Route path="/fifteenPuzzle" element={<><Navbar/><FifteenPuzzle/></>} />
       <Route path="/calculatingSpeed" element={<><Navbar/><Calculatingspeed/></>} />
       <Route path="/suduku" element={<><Navbar/><Suduko/></>} />
+     
     </Routes>
   </Router>
      

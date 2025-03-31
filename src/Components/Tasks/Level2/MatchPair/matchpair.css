@@ -1,3 +1,9 @@
+main
+{
+  background-color: rgb(194, 191, 189);
+  height: 92.5vh;
+}
+
 .matchPairContainer {
   display: flex;
   justify-content: center;
@@ -34,7 +40,7 @@
   .matchPairMainContainer h1 {
     padding: 10px 20px;
     font-size: 25px;
-    background-color: antiquewhite;
+    background-color: rgb(228, 228, 228);
     border-radius: 10px;
   }
 
