@@ -24,7 +24,7 @@ const Header_02 = () => {
               Earn While Doing Online Tasks From Home
             </p>
             <p style={{ textAlign: "start" }}>
-              Join our community of 240,000+ taskers!
+              Join our community of 24+ taskers!
             </p>
           </Col>
           <Col md={5} className="p-3">
@@ -50,7 +50,7 @@ const Header_02 = () => {
               Meet entrepreneurial taskers like you.
             </p>
             <p style={{ color: "rgb(163, 160, 160)" }}>
-              Join a community of 240,000+ taskers.
+              Join a community of 24+ taskers.
             </p>
           </Col>
         </Row>
@@ -60,7 +60,7 @@ const Header_02 = () => {
               style={{ color: "#29CD9C", fontWeight: "900" }}
               className="fs-1"
             >
-              2,40,000+
+              24+
             </span>{" "}
             <br />
             <span style={{ color: "white" }}>Total Taskers</span>
@@ -70,7 +70,7 @@ const Header_02 = () => {
               style={{ color: "#29CD9C", fontWeight: "900" }}
               className="fs-1"
             >
-              $15M
+             &#x20B9;1000
             </span>{" "}
             <br />
             <span style={{ color: "white" }}>Total Earnings</span>
@@ -80,7 +80,7 @@ const Header_02 = () => {
               style={{ color: "#29CD9C", fontWeight: "900" }}
               className="fs-1"
             >
-              90+
+              3+
             </span>{" "}
             <br />
             <span style={{ color: "white" }}>Countries</span>
@@ -132,7 +132,7 @@ const Header_02 = () => {
             <br />
             <h4 style={{ textAlign: "left" }}>Fair</h4>
             <p style={{ textAlign: "left" ,fontSize:'20px' }}>
-              Earn at least &#8377; 8.00 per task—often with bigger payments and
+              Earn at least &#8377; 12.00 per task—often with bigger payments and
               incentives.
             </p>
           </Col>
@@ -167,7 +167,7 @@ const Header_02 = () => {
             <h4 style={{ textAlign: "left" }}>Fun</h4>
             <p style={{ textAlign: "left" ,fontSize:'20px'}}>
               Explore, contribute to, and learn from all kinds of interesting
-              tasks.It will be fun .
+              tasks .
             </p>
           </Col>
         </Row>

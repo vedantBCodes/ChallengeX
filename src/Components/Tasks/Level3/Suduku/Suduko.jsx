@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import SudokuGrid from "./SudokuGrid";
 import SudokuGrid from "./SudukuGrid.jsx";
 import "./suduko.css";
 

@@ -35,8 +35,8 @@ const Footer = () => {
           <p style={{fontSize:'40px',color:'white'}}>Don't miss out</p>
             <p style={{fontSize:'25px',color:'white'}}>Sign up to stay updated on the latest in technology</p>
         <input type="email" placeholder="   &#9993;  Email Address"  name="email" required style={{padding:'10px 20px',borderRadius:'5px'}}/>  &nbsp;&nbsp;
-        <input type="submit" name="Subscribe to RoadmapGuider" value="Subscribe To RoadmapGuider" class="subscribeBox"/> <br /> <br />
-        <p style={{fontSize:'17px',color:'white'}}>We're committed to your privacy. RoadmapGuider uses the information you provide to us to contact you about our relevant
+        <input type="submit" name="Subscribe to ChallengeX" value="Subscribe To ChallengeX" class="subscribeBox"/> <br /> <br />
+        <p style={{fontSize:'17px',color:'white'}}>We're committed to your privacy. ChallengeX uses the information you provide to us to contact you about our relevant
       content, products, and services. You may unsubscribe from these communications at any time.</p>
           </Col>
           <Col md={4}>

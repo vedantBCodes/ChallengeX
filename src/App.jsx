@@ -19,6 +19,8 @@ import Calculatingspeed from './Components/Tasks/Level3/CalculatingSpeed/Calcula
 import Suduko from './Components/Tasks/Level3/Suduku/Suduko';
 import MidSection from './Components/MidSection';
 import WordSearch from './Components/Tasks/Level1/WordSearch/WordSearch';
+import ContactPage from './Components/Contact Us/ContactPage';
+import { Navigate } from 'react-router-dom';
 
 // import TicTacToe  from './Components/Tasks/Level1/Tic-Tac-Toe/TicTacToe'
 
@@ -52,6 +54,9 @@ function App() {
        <JoinNowSection_04/>
       <Footer/>
       </>} />
+      {/* <Route path="/about" element={<iframe src="https://google.com" width="100%" height="100%" title="About Page" />} /> */}
+      <Route path="/contact" element={<><Navbar/> <ContactPage/></>} />
+      <Route path="/login" element={<><Navbar/> <ContactPage/></>} />
       <Route path="/quiz" element={<><Navbar/> <Quiz /></>} />
       <Route path="/tictactoe" element={<><Navbar/><TicTacToe/></>} />
       <Route path="/guessingGame" element={<><Navbar/><Guessinggame/></>} />

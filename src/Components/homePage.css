@@ -1,5 +1,8 @@
 *
 {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
     color: black;
 }
 .navbar , .navContainer
@@ -219,8 +222,23 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
   display: flex; /* Cards in a horizontal line */
   transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
 }
-
-  
+#joinNowSectionPara
+{
+  text-align:left;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 1.2;
+}
+@media (max-width:400px)
+{
+  #joinNowSectionPara
+{
+  text-align:left;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.2;
+}
+}
 /* end ---> CSS style for the 12 tasks section */
 
 #emailBtn

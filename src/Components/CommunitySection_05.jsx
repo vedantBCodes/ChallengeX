@@ -20,7 +20,8 @@ const CommunitySection_05 = () => {
         <Row className="d-flex , justify-content-center">
           <Col md={4}>
             <img src={gadekarPrithvi} alt="" width={250} />
-            <h1>Prithvi Gadekar</h1>
+            <h1 style={{fontSize:'30px',fontWeight:'700'}} className="mt-2">Abhijeet More</h1>
+
             <p>India</p>
             <hr />
             <div>
@@ -40,9 +41,9 @@ const CommunitySection_05 = () => {
               </p>
             </div>
           </Col>
-          <Col md={4}>
+          <Col md={3}> 
             <img src={shraddhaPatil} alt="" width={250} />
-            <h1>Shraddha Patil</h1>
+            <h1 style={{fontSize:'30px',fontWeight:'700'}} className="mt-2">Shraddha Patil</h1>
             <p>India</p>
             <hr />
             <div>
@@ -55,16 +56,15 @@ const CommunitySection_05 = () => {
               >
                 "I like platforms that encourage learning and skill-building
                 through tasks while offering rewards. If the tasks can be
-                educational, like math problems, vocabulary building, or
-                logic-based challenges, it would be a win-win. But it’s
-                important that the rewards aren’t too hard to achieve or else
-                users might lose interest quickly."
+                educational, like math problems ,logic-based challenges, it 
+                would be a win-win. But it’s important that the rewards aren’t 
+                too hard to achieve ."
               </p>
             </div>
           </Col>
           <Col md={4}>
             <img src={moreAbhijeet} alt="" width={250} />
-            <h1>Abhijeet More</h1>
+            <h1 style={{fontSize:'30px',fontWeight:'700'}} className="mt-2">Prithvi Gadekar</h1>
             <p>India</p>
             <hr />
             <div>
