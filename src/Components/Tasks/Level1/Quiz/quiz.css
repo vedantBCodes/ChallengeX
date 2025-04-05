@@ -1,4 +1,4 @@
-main
+.QuizMainContainer
 {
   background-color: rgb(194, 191, 189);
   height: 92.5vh;
@@ -29,7 +29,7 @@ main
   background-color: rgb(229, 228, 226);
   margin: 10px 10px;
 }
-.options
+.quizOptions
 {
   width: 50vw;
   display: flex;
@@ -39,7 +39,7 @@ main
   text-align: center;
   gap: 20px;
 }
-.options button
+.quizOptions button
 {
   width: 90%;
   border: none;
@@ -47,7 +47,7 @@ main
   box-shadow: 2px 2px 2px 2px rgb(210, 206, 206);
 
 }
-#next
+#quizNextBtn
 {
   width: 100px;
   height: 40px;
@@ -55,11 +55,11 @@ main
   background-color: black;
   border-radius: 5px;
 }
-.correct
+.qcorrect
 {
   background-color: blue;
 }
-.wrong
+.qwrong
 {
   background-color: red;
 }
@@ -76,4 +76,86 @@ main
   padding: 20px;
   background-color: rgb(242, 238, 234);
   border: none;
+}
+.rulesPage {
+  text-align: center;
+  padding: 2rem;
+}
+
+.rulesPage ul {
+  list-style-type: disc;
+  text-align: left;
+  max-width: 500px;
+  margin: 1rem auto;
+}
+
+.startBtn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.timer {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: crimson;
+  margin-bottom: 10px;
+}
+.qsuccess {
+  padding: 2rem;
+  text-align: center;
+  border-radius: 16px;
+  max-width: 90%;
+  width: 500px;
+  margin: 3rem auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.qsuccess.win {
+  background: linear-gradient(135deg, #d4fcd7, #e6ffe6);
+  border: 2px solid #28a745;
+  color: #155724;
+}
+
+.qsuccess.lose {
+  background: linear-gradient(135deg, #ffd6d6, #ffeaea);
+  border: 2px solid #dc3545;
+  color: #721c24;
+}
+
+.qsuccess h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.qsuccess .score,
+.qsuccess .time,
+.qsuccess .message {
+  font-size: 1.2rem;
+  margin: 0.75rem 0;
+}
+
+/* ✅ Responsive Styling */
+@media (max-width: 600px) {
+  .qsuccess {
+    padding: 1.5rem 1rem;
+  }
+
+  .qsuccess h1 {
+    font-size: 1.8rem;
+  }
+
+  .qsuccess .score,
+  .qsuccess .time,
+  .qsuccess .message {
+    font-size: 1rem;
+  }
+}
+.rulesPageMainContainer
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }

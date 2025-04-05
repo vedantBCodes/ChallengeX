@@ -181,11 +181,6 @@
     background-color: black;
     border-radius: 10px;
 }
-.globalCommunity:hover
-{
-    box-shadow: 2px 2px 2px 2px rgb(0, 0, 0);
-    transition: 1s;
-}
 .fairFlexibleAndFun
 {
    background-Color:rgb(247, 247, 247);

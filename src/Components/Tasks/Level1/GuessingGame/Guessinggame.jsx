@@ -1,86 +1,126 @@
-import React, { useRef } from 'react'
-import { useState } from 'react';
-import './Guessinggame.css'
+import React, { useRef, useState } from "react";
+import "./Guessinggame.css";
 
 const Guessinggame = () => {
+  const input = useRef(null);
+  const msgContainer = useRef(null);
 
-const input = useRef(null);
-const msgContainer = useRef(null);
-var [num,setNum] = useState(Math.floor(Math.random()*101));
-const [isDiabled,setIsDiabled] = useState(true);
-const [guessNumbers,setGuessNumbers] = useState([]);
+  const [num, setNum] = useState(Math.floor(Math.random() * 101));
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [guessNumbers, setGuessNumbers] = useState([]);
+  const [start, setStart] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [resultMsg, setResultMsg] = useState("");
 
+  function handleSubmit() {
+    const enteredNum = input.current.value;
 
-// console.log(num);  //for Testing
-var msg1=document.createElement("p");
-var msg2=document.createElement("p");
-
-function handleSubmit()
-{
-    var enteredNum=input.current.value;
-    if(enteredNum=="")
-    {
-        alert("Please enter a number :");
-        return;
+    if (enteredNum === "") {
+      alert("Please enter a number:");
+      return;
     }
-    setGuessNumbers([...guessNumbers,enteredNum]);
-    msg1.innerText="";
-    if(enteredNum<num)
-    {
-      msgContainer.current.innerHTML='';
-        msg1.innerText="Too Low !";
-        msg2.innerText=`Your Guesses :${[...guessNumbers,enteredNum]}`;
-        msgContainer.current.appendChild(msg1);
-        msgContainer.current.appendChild(msg2);
-        input.current.value="";
-    }
-    else if(enteredNum>num)
-    {
-      msgContainer.current.innerHTML='';
-        msg1.innerText="Too High !";
-        msg2.innerText=`Your Guesses :${[...guessNumbers,enteredNum]}`;
-        msgContainer.current.appendChild(msg1);
-        msgContainer.current.appendChild(msg2);
-        input.current.value="";
-    }
-    else
-    {
-      msgContainer.current.innerHTML='';
-        msg1.innerText="You got it ! Congrats";
-        msg2.innerText=`Your Guesses :${[...guessNumbers,enteredNum]}`;
-        msgContainer.current.appendChild(msg1);
-        msgContainer.current.appendChild(msg2);
-        input.current.value="";
-        setIsDiabled(false);
-        input.current.disabled = true;
-    }
-}
 
-function onStartBtnHandle()
-{
-  msgContainer.current.innerHTML='';
+    const updatedGuesses = [...guessNumbers, enteredNum];
+    setGuessNumbers(updatedGuesses);
+    msgContainer.current.innerHTML = "";
+
+    const msg1 = document.createElement("p");
+    const msg2 = document.createElement("p");
+
+    if (enteredNum < num) {
+      msg1.innerText = "Too Low!";
+    } else if (enteredNum > num) {
+      msg1.innerText = "Too High!";
+    } else {
+      msg1.innerText = `🎉 You guessed it in ${updatedGuesses.length} attempts! You win!`;
+      setResultMsg("win");
+      input.current.disabled = true;
+      setIsDisabled(false);
+      setGameOver(true);
+    }
+
+    // If guessed wrong and max attempts reached
+    if (
+      enteredNum != num &&
+      updatedGuesses.length >= 5 &&
+      !gameOver
+    ) {
+      msg1.innerText = `❌ You've used all 5 attempts. You lose. The number was ${num}.`;
+      input.current.disabled = true;
+      setIsDisabled(false);
+      setResultMsg("lose");
+      setGameOver(true);
+    }
+
+    msg2.innerText = `Your Guesses: ${updatedGuesses.join(", ")}`;
+    msgContainer.current.appendChild(msg1);
+    msgContainer.current.appendChild(msg2);
+    input.current.value = "";
+  }
+
+  function startGame() {
+    setStart(true);
+    msgContainer.current.innerHTML = "";
     input.current.disabled = false;
-    setIsDiabled(true);
-    setNum(Math.floor(Math.random()*101));
-    guessNumbers.splice(0, guessNumbers.length);
-}
-  return (
-   <>
-   <main className="guessingGameMainContainer">
-   <div className="guessingGameContainer">
-        <h3>Guess the number</h3>
-        <p style={{fontSize:'25px'}}>Guess number between 0 to 100</p>
-        <input type="number" placeholder="Enter a number" min="0" max="100" ref={input} id='guessingGameInput'/>
-        <div id="Btns">
-            <button id="submitBtn" onClick={handleSubmit}  disabled={!isDiabled}>Submit</button>
-            <button id="startBtn" onClick={onStartBtnHandle} disabled={isDiabled}>Start Game</button>
-        </div>
-        <div id="msg" ref={msgContainer}>
-        </div>
-    </div>
-    </main>
-   </>
-  )
-}
+    setIsDisabled(true);
+  }
 
-export default Guessinggame
+  return (
+    <main className="guessingGameMainContainer">
+      {!start ? (
+        <div className="rulesPage">
+          <h2>Welcome to the Guessing Game</h2>
+          <ul>
+            <li>Guess a number between 0 and 100.</li>
+            <li>You’ll get hints: “Too Low” or “Too High”.</li>
+            <li>You only get <strong>5 attempts</strong>.</li>
+            <li>Game ends automatically after 5 tries.</li>
+          </ul>
+          <button className="startGameBtn" onClick={startGame}>
+            Start Game
+          </button>
+        </div>
+      ) : (
+        <div className="guessingGameContainer">
+          <h3>Guess the Number</h3>
+          <p style={{ fontSize: "20px" }}>Enter a number between 0 and 100</p>
+          <input
+            type="number"
+            placeholder="Guess a number"
+            min="0"
+            max="100"
+            ref={input}
+            id="guessingGameInput"
+          />
+          <div id="Btns">
+            <button
+              id="submitBtn"
+              onClick={handleSubmit}
+              disabled={!isDisabled}
+            >
+              Submit
+            </button>
+          </div>
+
+          <div id="msg" ref={msgContainer}></div>
+
+          {gameOver && (
+            <div className="resultMessage">
+              {resultMsg === "win" ? (
+                <p style={{ color: "green", fontSize: "18px" }}>
+                  🏆 Great job! You won!
+                </p>
+              ) : (
+                <p style={{ color: "red", fontSize: "18px" }}>
+                  😓 You lost. 
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </main>
+  );
+};
+
+export default Guessinggame;

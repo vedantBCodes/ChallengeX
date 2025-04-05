@@ -1,7 +1,8 @@
-main
+.memoryGameMainContainer
 {
   background-color: rgb(194, 191, 189);
   height: 92.5vh;
+  margin-top: 0;
 }
 
 .memoryGameMainContainer h1 {
@@ -48,4 +49,59 @@ main
     background-color: #0056b3;
   }
   
+  .rulesPage {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .rulesPage h2 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .rulesPage ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .rulesPage ul li {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .startGameBtn {
+    margin-top: 30px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .startGameBtn:hover {
+    background-color: #45a049;
+  }
+  .memoryGameMainContainer
+  {
+    margin-top: 0;
+  }
+
+  .memoryGameMainContainer {
+    width: 90%;                   /* Occupies around 90% of the screen width */
+    max-width: 1200px;            /* Optional: limit max width for large screens */
+    height: 600px;                /* Fixed height to prevent page scroll */
+    margin: 0 auto;               /* Center horizontally */
+    padding: 20px;                /* Inner spacing */
+    box-sizing: border-box;       /* Include padding in width/height */
+    display: flex;                /* Flexbox for layout */
+    flex-direction: column;       /* Stack children vertically */
+    justify-content: space-between; /* Space between header, grid, footer (if any) */
+    align-items: center;          /* Center child elements horizontally */
+    background-color: #f9f9f9;    /* Light background */
+    border-radius: 12px;          /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  }
   
