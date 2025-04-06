@@ -4,17 +4,48 @@ import "./colorSpotter.css";
 const ColorSpotter = () => {
   const [gridSize, setGridSize] = useState(3);
   const [score, setScore] = useState(0);
-  const [maxScore, setMaxScore] = useState(
-    localStorage.getItem("maxScore5") || 0
-  );
+  const [maxScore, setMaxScore] = useState(localStorage.getItem("maxScore5") || 0);
   const [uniqueIndex, setUniqueIndex] = useState(null);
   const [isShaking, setIsShaking] = useState(false);
   const [baseColor, setBaseColor] = useState(getRandomRGBColor());
+  const [gameStarted, setGameStarted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(20);
+  const [gameResult, setGameResult] = useState(null); // "win" | "lose" | null
 
   useEffect(() => {
     localStorage.setItem("maxScore5", maxScore);
-    generateGrid(gridSize);
-  }, [maxScore, gridSize]);
+    if (gameStarted) generateGrid(gridSize);
+  }, [maxScore, gridSize, gameStarted]);
+
+  // Handle timer countdown
+  useEffect(() => {
+    let timer;
+    if (gameStarted && timeLeft > 0 && !isShaking) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+    }
+
+    // Stop the timer and end the game immediately when shaking starts
+    if (isShaking) {
+      clearInterval(timer); // Stop timer immediately
+      setGameResult("lose"); // Immediately set game result to "lose"
+      setGameStarted(false); // Stop the game
+    }
+
+    if (gameStarted && timeLeft === 0) {
+      if (score > 10) {
+        setGameResult("win");
+      } else {
+        setGameResult("lose");
+      }
+
+      if (score > maxScore) setMaxScore(score);
+      setGameStarted(false);
+    }
+
+    return () => clearInterval(timer); // Cleanup timer on unmount
+  }, [gameStarted, timeLeft, isShaking]);
 
   const generateGrid = (size) => {
     setUniqueIndex(Math.floor(Math.random() * (size * size)));
@@ -23,27 +54,68 @@ const ColorSpotter = () => {
 
   const handleBoxClick = (index) => {
     if (index === uniqueIndex) {
-      setScore(score + 1);
-      setGridSize(gridSize + 1);
+      setScore((prev) => prev + 1); // Increment score only if correct box is clicked
+      setGridSize((prev) => prev + 1); // Increase grid size on correct click
+      generateGrid(gridSize + 1); // Generate new grid
     } else {
-      setIsShaking(true);
-      setTimeout(() => setIsShaking(false), 1000);
-      if (score > maxScore) setMaxScore(score);
-      setScore(0);
-      setGridSize(3);
+      setIsShaking(true); // Trigger shake animation
+      setTimeout(() => setIsShaking(false), 1000); // Reset shaking state after 1 second
+      if (score > maxScore) setMaxScore(score); // Update max score if necessary
     }
-    generateGrid(gridSize + 1);
   };
+
+  const handleStart = () => {
+    setScore(0); // Reset score when starting the game
+    setGridSize(3); // Reset grid size to 3
+    setTimeLeft(20); // Reset time left to 20 seconds
+    setGameResult(null); // Reset game result
+    setGameStarted(true); // Start the game
+  };
+
+  // Win or Lose screen (without Play Again button)
+  if (gameResult) {
+    return (
+      <div className="resultScreen">
+        <h1>{gameResult === "win" ? "🎉 You Win!" : "😢 You Lose!"}</h1>
+        <p>{gameResult === "win"
+          ? "Nice spotting! You scored more than 10 in under 20 seconds!"
+          : "Wrong click or time's up! Try again later."}
+        </p>
+        <p>Your Score: {score}</p>
+      </div>
+    );
+  }
+
+  // Start screen
+  if (!gameStarted) {
+    return (
+      <div className="startScreen">
+        <h1>Welcome to Color Spotter!</h1>
+        <p><strong>Rules:</strong></p>
+        <ul style={{ textAlign: 'left' }}>
+          <li>One box in the grid has a slightly different shade.</li>
+          <li>Click the different box to level up.</li>
+          <li>Wrong click ends the game immediately.</li>
+          <li>You have 20 seconds to score as high as you can.</li>
+          <li><strong>Win:</strong> Score more than 10 in the first 20 seconds.</li>
+        </ul>
+        <button className="colorSpotterStartButton" onClick={handleStart}>Start Game</button>
+      </div>
+    );
+  }
 
   return (
     <div className="colorSpotterContainer">
       <div className="colorSpotterScore">
         <h1>Color Spotter</h1>
         <span id="score">Score: {score}</span>
-        <span id="maxScore">Max Score: {maxScore}</span>
+        <span id="timer">Time Left: {timeLeft}s</span>
       </div>
 
-      <div className={`mainBox ${isShaking ? "shake" : ""}`} style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)` }}>
+      <div
+        className={`mainBox ${isShaking ? "shake" : ""}`}
+        style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)` }}
+      >
         {Array.from({ length: gridSize * gridSize }).map((_, index) => {
           const isUnique = index === uniqueIndex;
           return (
@@ -62,7 +134,7 @@ const ColorSpotter = () => {
   );
 };
 
-// Function to generate a random RGB color
+// Generate random RGB color
 const getRandomRGBColor = () => {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);

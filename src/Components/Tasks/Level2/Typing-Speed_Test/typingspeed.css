@@ -1,87 +1,224 @@
-
+.typingSpeedMainContainer
+{
+  background-color: #c3c6c4;
+  position: relative;
+  bottom: 20px;
+}
 .typingSpeedContainer {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    margin: 20px auto;
-    max-width: 600px;
-    padding: 20px;
-    background: #e3e2e2;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    bottom: 20px;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  #typingSpeedInput {
-    width: 90%;
-    padding: 10px;
-    font-size: 18px;
-    text-align: center;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    background: #fff;
-    outline: none;
-  }
-  
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgb(244, 241, 241);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.gameScreen h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.rulesPage h2 {
+  font-size: 1.5em;
+}
+
+.timeContainer h3 {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.gameScreen input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+  color: #333;
+  text-align: center;
+}
+
+.row button {
+  padding: 10px 25px;
+  font-size: 1.1em;
+  background-color: #a2a2a6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.row button:hover {
+  background-color: #919192;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.typingSpeedBtnContainer {
+  margin-top: 30px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.typingSpeedBtn {
+  padding: 10px 15px;
+  font-size: 1.2em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.typingSpeedBtn:hover {
+  background-color: #0056b3;
+}
+
+.row1 {
+  justify-content: center;
+}
+
+.row2 {
+  justify-content: space-evenly;
+}
+
+.row3 {
+  justify-content: flex-start;
+}
+
+.row4 {
+  justify-content: center;
+}
+
+.typingSpeedBtn {
+  width: 40px; 
+}
+
+.typingSpeedBtnContainer {
+  margin-top: 20px;
+}
+
+.row1 .typingSpeedBtn:nth-child(1) {
+  margin-left: 45px;
+}
+
+.row1 .typingSpeedBtn:nth-child(10) {
+  margin-right: 45px;
+}
+
+.timeContainer {
+  margin-top: 20px;
+}
+
+.startGameBtn {
+  background-color: #28a745;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.startGameBtn:hover {
+  background-color: #218838;
+}
+
+.rulesPage ul {
+  text-align: left;
+  list-style: none;
+  padding-left: 20px;
+}
+
+.rulesPage li {
+  margin-bottom: 10px;
+}
+
+.rulesPage {
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.resultMessage {
+  margin-top: 20px;
+}
+
+.resultMessage p {
+  font-size: 1.3em;
+}
+
+.resultMessage p {
+  font-size: 1.2em;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.resultMessage p[style*="green"] {
+  background-color: #28a745;
+}
+
+.resultMessage p[style*="red"] {
+  background-color: #dc3545;
+}
+
+#typingSpeedReset {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff6b6b;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#typingSpeedReset:hover {
+  background-color: #e34b4b;
+}
+
+@media (max-width: 768px) {
   .typingSpeedBtnContainer {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 5px;
   }
-  
+
   .row {
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 5px;
   }
-  
+
   .typingSpeedBtn {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: #e0e0e0;
-    border: 2px solid #aaa;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s ease-in-out, transform 0.1s;
+    width: 80%;
+    margin: 5px auto;
   }
-  
-  .typingSpeedBtn:hover {
-    background-color: #d1d1d1;
+
+  .rulesPage {
+    max-width: 90%;
   }
-  
-  .typingSpeedBtn:active {
-    background-color: #bbb;
-    transform: scale(0.95);
+
+  .typingSpeedContainer {
+    max-width: 90%;
+    padding: 15px;
   }
-  
-  .timeContainer h3 {
-    color: #d9534f;
-    font-size: 22px;
-    margin-top: 15px;
-  }
-  
-  #typingSpeedReset {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s ease-in-out;
-  }
-  
-  #typingSpeedReset:hover {
-    background-color: #0056b3;
-  }
-  
+}
+

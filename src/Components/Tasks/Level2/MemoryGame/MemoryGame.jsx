@@ -10,8 +10,9 @@ const MemoryGame = () => {
   const [gamePhase, setGamePhase] = useState("showing");
   const [level, setLevel] = useState(1);
   const [lives, setLives] = useState(3);
-  const [timer, setTimer] = useState(20);
+  const [timer, setTimer] = useState(25);
   const [gameWon, setGameWon] = useState(false);
+  const [gameOverReason, setGameOverReason] = useState(null); // 'time' | 'lives'
 
   // Handle timer countdown
   useEffect(() => {
@@ -21,6 +22,7 @@ const MemoryGame = () => {
       setTimer((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
+          setGameOverReason("time");
           return 0;
         }
         return prev - 1;
@@ -53,34 +55,31 @@ const MemoryGame = () => {
 
     if (coloredBoxIndexes.includes(index)) {
       if (!selectedBoxes.includes(index)) {
-        setSelectedBoxes([...selectedBoxes, index]);
+        const newSelection = [...selectedBoxes, index];
+        setSelectedBoxes(newSelection);
+
+        if (newSelection.length === coloredBoxCount) {
+          setTimeout(() => {
+            if (level >= 5) {
+              setGameWon(true);
+            } else {
+              setGridSize((prev) => prev + 1);
+              setColoredBoxCount((prev) => prev + 1);
+              setLevel((prev) => prev + 1);
+            }
+          }, 500);
+        }
       }
     } else {
-      setLives((prev) => prev - 1);
-    }
-
-    if (selectedBoxes.length + 1 === coloredBoxCount) {
-      setTimeout(() => {
-        if (level + 1 > 5) {
-          setGameWon(true);
-        } else {
-          setGridSize((prev) => prev + 1);
-          setColoredBoxCount((prev) => prev + 1);
-          setLevel((prev) => prev + 1);
-        }
-      }, 500);
+      setLives((prev) => {
+        const newLives = prev - 1;
+        if (newLives <= 0) setGameOverReason("lives");
+        return newLives;
+      });
     }
   };
 
-  const restartGame = () => {
-    setStart(false);
-    setGridSize(3);
-    setColoredBoxCount(3);
-    setLevel(1);
-    setLives(3);
-    setTimer(20);
-    setGameWon(false);
-  };
+
 
   // Show rules screen
   if (!start) {
@@ -103,6 +102,39 @@ const MemoryGame = () => {
     );
   }
 
+  const renderEndMessage = () => {
+    if (gameWon) {
+      return (
+        <>
+          <h2 style={{ color: "green", marginTop: "20px" }}>🎉 You Win!</h2>
+          <p>You've successfully completed all 5 levels!</p>
+        </>
+      );
+    }
+
+    if (gameOverReason === "time") {
+      return (
+        <>
+          <h2 style={{ color: "red", marginTop: "20px" }}>⏰ Time’s up!</h2>
+          <p>You ran out of time before finishing the game.</p>
+        </>
+      );
+    }
+
+    if (gameOverReason === "lives") {
+      return (
+        <>
+          <h2 style={{ color: "red", marginTop: "20px" }}>💥 Game Over!</h2>
+          <p>You lost all your lives.</p>
+        </>
+      );
+    }
+
+    return null;
+  };
+
+  const gameEnded = gameWon || lives <= 0 || timer <= 0;
+
   return (
     <main className="memoryGameMainContainer">
       <h1>Memory Game</h1>
@@ -112,19 +144,12 @@ const MemoryGame = () => {
         <p>Time Left: {timer}s</p>
       </div>
 
-      {gameWon ? (
+      {gameEnded ? (
         <div>
-          <h2 style={{ color: "green", marginTop: "20px" }}>🎉 You Win!</h2>
-          <button onClick={restartGame} id="memoryGameBtn">
+          {renderEndMessage()}
+          {/* <button onClick={restartGame} id="memoryGameBtn">
             Play Again
-          </button>
-        </div>
-      ) : lives <= 0 || timer <= 0 ? (
-        <div>
-          <h2 style={{ color: "red", marginTop: "20px" }}>Game Over!</h2>
-          <button onClick={restartGame} id="memoryGameBtn">
-            Restart Game
-          </button>
+          </button> */}
         </div>
       ) : (
         <div

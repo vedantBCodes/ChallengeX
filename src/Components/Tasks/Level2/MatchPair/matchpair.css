@@ -1,14 +1,22 @@
-main
+.matchPairMainTag
 {
   background-color: rgb(194, 191, 189);
   height: 92.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.matchPairMainContainer
+{
+  padding: 20px;
+  box-shadow: 2px 2px 2px 2px black;
+  border-radius: 10px;
+}
 .matchPairContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  
 }
 #matchPairBtn {
     width: 100%; /* Let the grid manage the layout */
@@ -52,5 +60,3 @@ main
     width: 300px; /* Width for the entire grid */
   }
   
-
-    
