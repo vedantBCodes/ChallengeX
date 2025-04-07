@@ -5,26 +5,48 @@ function FifteenPuzzle() {
   const [buttons, setButtons] = useState([]);
   const [moveCount, setMoveCount] = useState(0);
   const [win, setWin] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [timer, setTimer] = useState(120);
+  const [gameOver, setGameOver] = useState(false);
 
-  // Initialize buttons for the puzzle grid (1 to 15) and an empty space at the last position
   useEffect(() => {
-    resetGame();
-  }, []);
+    if (gameStarted) {
+      resetGame(); // Only shuffle and reset if game is starting
+    }
+  }, [gameStarted]);
 
-  // Shuffle buttons and ensure the empty tile is always at the last position
+  useEffect(() => {
+    if (!gameStarted || win || gameOver) return;
+
+    const interval = setInterval(() => {
+      setTimer((prev) => {
+        if (prev === 1) {
+          clearInterval(interval);
+          setGameOver(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [gameStarted, win, gameOver]);
+
   const shuffleButtons = (btns) => {
     for (let i = btns.length - 2; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [btns[i], btns[j]] = [btns[j], btns[i]];
     }
-    btns[15] = 16; // Ensure the empty tile stays in the last position
+    btns[15] = 16; // Empty tile in the last spot
     return [...btns];
   };
 
   const handleClick = (index) => {
-    const emptyIndex = buttons.findIndex((btn) => btn === 16);
+    if (!gameStarted || win || gameOver) return;
 
+    const emptyIndex = buttons.findIndex((btn) => btn === 16);
     const isValidMove = [index - 1, index + 1, index - 4, index + 4].includes(emptyIndex);
+
     if (isValidMove) {
       const newButtons = [...buttons];
       [newButtons[index], newButtons[emptyIndex]] = [newButtons[emptyIndex], newButtons[index]];
@@ -38,6 +60,7 @@ function FifteenPuzzle() {
     const isWin = btns.slice(0, 15).every((val, idx) => val === idx + 1);
     if (isWin) {
       setWin(true);
+      setGameOver(false);
     }
   };
 
@@ -47,29 +70,58 @@ function FifteenPuzzle() {
     setButtons(shuffledButtons);
     setMoveCount(0);
     setWin(false);
+    setTimer(120);
+    setGameOver(false);
   };
 
-  return (
-    <main>
-    <div className="puzzleContainer">
-      <h1>15 Puzzle Game</h1>
-      <p>Total Moves: {moveCount}</p>
-      {win && <p className="winMessage">Congrats! You won!</p>}
-      <div className="puzzleBtnContainer">
-        {buttons.map((num, index) => (
-          <button
-            key={index}
-            onClick={() => handleClick(index)}
-            className={num === 16 ? 'hiddenBtn' : 'puzzleBtn'}
-            disabled={num === 16}
-            style={num !== 16 && num === index + 1 ? { border: '2px solid rgb(99, 99, 222)' } : {}}
-          >
-            {num !== 16 ? num : ''}
+  if (!gameStarted) {
+    return (
+      <main className="puzzleMainContainer">
+        <div className="puzzleRulesContainer">
+          <h1>🧩 15 Puzzle Game - Rules</h1>
+          <ul>
+            <li>Rearrange the tiles from 1 to 15 by sliding them into the empty space.</li>
+            <li>Only adjacent tiles (up, down, left, right) can be moved.</li>
+            <li>Win by arranging all numbers in order before time runs out!</li>
+            <li>You have <strong>120 seconds</strong> to complete the puzzle.</li>
+          </ul>
+          <button className="startGameBtn" onClick={() => setGameStarted(true)}>
+            Start Game
           </button>
-        ))}
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className='puzzleMainContainer'>
+      <div className="puzzleContainer">
+        <h1>15 Puzzle Game</h1>
+        <p>Total Moves: {moveCount}</p>
+        <p>Time Left: {timer}s</p>
+
+        {win && <p className="winMessage">🎉 Congrats! You won!</p>}
+        {gameOver && !win && <p className="loseMessage">⏰ Time's up! You lost the game.</p>}
+
+        <div className="puzzleBtnContainer">
+          {buttons.map((num, index) => (
+            <button
+              key={index}
+              onClick={() => handleClick(index)}
+              className={num === 16 ? 'hiddenBtn' : 'puzzleBtn'}
+              disabled={num === 16}
+              style={
+                num !== 16 && num === index + 1
+                  ? { border: '2px solid rgb(99, 99, 222)' }
+                  : {}
+              }
+            >
+              {num !== 16 ? num : ''}
+            </button>
+          ))}
+        </div>
+        {/* <button id="puzzleResetBtn" onClick={resetGame}>Reset</button> */}
       </div>
-      <button id="puzzleResetBtn" onClick={resetGame}>Reset</button>
-    </div>
     </main>
   );
 }

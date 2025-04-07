@@ -23,3 +23,4 @@ function SudokuGrid({ board, handleInputChange }) {
 }
 
 export default SudokuGrid;
+

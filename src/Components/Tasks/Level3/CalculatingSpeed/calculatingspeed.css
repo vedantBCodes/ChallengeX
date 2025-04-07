@@ -33,8 +33,4 @@
 {
     color: red;
     font-size: 50px;
-    transform: rotate(-45deg); /* Rotate text by 45 degrees */
-    position: absolute;
-    top: 130px;
-    /* right: 1px; */
 }

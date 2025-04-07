@@ -1,4 +1,4 @@
-main
+.puzzleMainContainer
 {
   background-color: rgb(194, 191, 189);
   height: 92.5vh;
@@ -29,9 +29,9 @@ main
   }
   
   .puzzleBtn {
-    padding: 5px;
     width: 100%;
     height: 100%;
+    padding-bottom: 5px;
     border: 1px solid black;
     box-shadow: 0.5px 0.5px 2px 2px rgb(165, 216, 245);
     background-color: rgb(237, 237, 245);
@@ -60,5 +60,39 @@ main
     position: absolute;
     top: 240px;
     transform: rotate(-45deg);
+  }
+  .puzzleRulesContainer {
+    background-color: #e2e2df;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 500px;
+    margin: auto;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .startGameBtn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .winMessage {
+    color: green;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .loseMessage {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
   }
   
