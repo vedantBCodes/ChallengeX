@@ -48,13 +48,14 @@ function App() {
     <Routes>
       <Route path="/" element={ <><Navbar/>
        <Header_02/>
-       <TasksPage_03/>
+       {/* <TasksPage_03/> */}
        <MidSection/>
        <CommunitySection_05/>
        <JoinNowSection_04/>
       <Footer/>
       </>} />
       {/* <Route path="/about" element={<iframe src="https://google.com" width="100%" height="100%" title="About Page" />} /> */}
+      <Route path="/task" element={<><Navbar/> <TasksPage_03/></>} />
       <Route path="/contact" element={<><Navbar/> <ContactPage/></>} />
       <Route path="/login" element={<><Navbar/> <ContactPage/></>} />
       <Route path="/quiz" element={<><Navbar/> <Quiz /></>} />

@@ -23,7 +23,7 @@ const Footer = () => {
             <input type="email" placeholder='Email Address ' id="emailInput" /> &nbsp;
             <button  id='emailBtn'>SEND</button>
             </div>     
-          <div><input type="checkbox" id='checkbox' style={{width:'25px'}}/> <label htmlFor="checkbox">Send me new released tasks from the Work at Home</label></div>
+          <div><input type="checkbox" id='checkbox' style={{width:'25px'}}/><label htmlFor="checkbox" id="footerCheckbox">Send me new released tasks from the Work at Home</label></div>
           </Col>
         </Row>
       </Container>

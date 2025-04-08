@@ -15,6 +15,8 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import './homePage.css';
+import axios from "axios";
+
 
 function TasksPage_03() {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -26,12 +28,25 @@ function TasksPage_03() {
     PuzzleImage, rapidFireImage, calculatingSpeedTest, sudukuImage
   ];
 
-  useEffect(() => {
-    fetch('./data.json')
-      .then(response => response.json())
-      .then(data => setCardData(data))
-      .catch(error => console.error('Error fetching card data:', error));
-  }, []);
+  // useEffect(() => {
+  //   fetch('./data.json')
+  //     .then(response => response.json())
+  //     .then(data => setCardData(data))
+  //     .catch(error => console.error('Error fetching card data:', error));
+  // }, []);
+
+    // Fetch task data from mongodb collection
+    useEffect(() => {
+      const getTask = async () => {
+        try {
+          const res = await axios.get("http://localhost:4001/task");
+          setCardData(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getTask();
+    }, []);
 
   const handleSlide = (index) => setSlideIndex(index);
 
