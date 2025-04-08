@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './calculatingspeed.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Calculatingspeed = () => {
   const expressionBox = useRef(null);
@@ -14,8 +16,8 @@ const Calculatingspeed = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [correctExpressionCount, setCorrectExpressionCount] = useState(0);
   const [totalExpressionCount, setTotalExpressionCount] = useState(0);
-  const [gameResult, setGameResult] = useState(null); // 'win' or 'lose'
-  const [startClicked, setStartClicked] = useState(false); // NEW STATE
+  const [gameResult, setGameResult] = useState(null);
+  const [startClicked, setStartClicked] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -72,7 +74,7 @@ const Calculatingspeed = () => {
   const handleStartClick = () => {
     if (!isRunning && !startClicked) {
       setIsRunning(true);
-      setStartClicked(true); // Disable start after first click
+      setStartClicked(true);
       getRandomExpression();
     }
   };
@@ -89,25 +91,24 @@ const Calculatingspeed = () => {
     const evaluated = eval(expression);
     setResult(evaluated);
 
-    if (expression === '') {
-      alert('Please start the game first.');
+    if (!expression) {
+      toast.warning('Please start the game first.');
     } else if (answerBox.current.value === '') {
-      alert('Please enter your answer!');
+      toast.warning('Please enter your answer!');
     } else if (ans === parseInt(evaluated)) {
-      alert('Correct!');
+      toast.success('Correct!');
       setCorrectExpressionCount((prev) => prev + 1);
       expressionBox.current.value = '';
       answerBox.current.value = '';
       getRandomExpression();
     } else {
-      alert('Incorrect!');
+      toast.error('Incorrect!');
       expressionBox.current.value = '';
       answerBox.current.value = '';
       getRandomExpression();
     }
   };
 
-  // Rules screen
   if (!gameStarted) {
     return (
       <main className="calculatingSpeedMainContainer">
@@ -136,7 +137,13 @@ const Calculatingspeed = () => {
         </button>
         <br />
         <br />
-        <input type="text" placeholder="Expression :" readOnly ref={expressionBox} />
+        <input
+          type="text"
+          placeholder="Expression :"
+          readOnly
+          ref={expressionBox}
+          onCopy={(e) => e.preventDefault()}
+        />
         <br />
         <br />
         <input type="number" placeholder="Your Ans :" ref={answerBox} />
@@ -161,6 +168,7 @@ const Calculatingspeed = () => {
           </div>
         )}
       </div>
+      <ToastContainer position="top-center" autoClose={2000} />
     </main>
   );
 };
