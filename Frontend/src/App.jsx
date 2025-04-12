@@ -20,29 +20,12 @@ import Suduko from './Components/Tasks/Level3/Suduku/Suduko';
 import MidSection from './Components/MidSection';
 import WordSearch from './Components/Tasks/Level1/WordSearch/WordSearch';
 import ContactPage from './Components/Contact Us/ContactPage';
-import { Navigate } from 'react-router-dom';
-
-// import TicTacToe  from './Components/Tasks/Level1/Tic-Tac-Toe/TicTacToe'
+// import { Navigate } from 'react-router-dom';
 
 function App() {
   return (
     <>
     <Router>
-    {/* <nav>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/quiz">Quiz</Link></li>
-        <li><Link to="/tictactoe">TicTacToe</Link></li>
-        <li><Link to="/guessingGame">GuessingGame</Link></li>
-        <li><Link to="/matchPair">MatchPair</Link></li>
-        <li><Link to="/typingSpeedTest">TypingSpeedTest</Link></li>
-        <li><Link to="/memoryGame">MemoryGame</Link></li>
-        <li><Link to="/colorSpotter">ColorSpotter</Link></li>
-        <li><Link to="/fifteenPuzzle">FifteenPuzzle</Link></li>
-        <li><Link to="/calculatingSpeed">CalculatingSpped</Link></li>
-        <li><Link to="/suduku">Suduku</Link></li>
-      </ul>
-    </nav> */}
 
     {/* Define Routes */}
     <Routes>
@@ -54,7 +37,6 @@ function App() {
        <JoinNowSection_04/>
       <Footer/>
       </>} />
-      {/* <Route path="/about" element={<iframe src="https://google.com" width="100%" height="100%" title="About Page" />} /> */}
       <Route path="/task" element={<><Navbar/> <TasksPage_03/></>} />
       <Route path="/contact" element={<><Navbar/> <ContactPage/></>} />
       <Route path="/login" element={<><Navbar/> <ContactPage/></>} />
