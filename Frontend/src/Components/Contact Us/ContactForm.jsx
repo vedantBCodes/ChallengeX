@@ -1,33 +1,50 @@
-import { useState } from "react";
-import './contactform.css'
+import './contactform.css';
+import emailjs from 'emailjs-com';
+import { useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const form = useRef();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+  
+    // Show pending toast
+    const toastId = toast.loading('📨 Sending your message...');
+  
+    emailjs.sendForm('EmailjsServiceID', 'template_ek7wc0b', form.current, 'yo6arUy27NQyfNWHk')
+      .then((result) => {
+          console.log(result.text);
+          toast.update(toastId, {
+            render: '✅ Email sent successfully!',
+            type: 'success',
+            isLoading: false,
+            closeButton: false,
+            autoClose: 3000,
+          });
+          form.current.reset();
+      }, (error) => {
+          console.log(error.text);
+          toast.update(toastId, {
+            render: '❌ Failed to send email. Please try again.',
+            type: 'error',
+            isLoading: false,
+            autoClose: 3000,
+          });
+      });
   };
+  
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit} className="contact-form">
+      <form ref={form} onSubmit={sendEmail} className="contact-form">
         <label>
           <strong>Name</strong>
           <input
             type="text"
-            name="name"
+            name="user_name"
             placeholder="Enter your Name :"
-            value={formData.name}
-            onChange={handleChange}
             required
           />
         </label>
@@ -36,10 +53,8 @@ const ContactForm = () => {
           <strong>E-Mail</strong>
           <input
             type="email"
-            name="email"
+            name="user_email"
             placeholder="Enter Email Address :"
-            value={formData.email}
-            onChange={handleChange}
             required
           />
         </label>
@@ -49,14 +64,15 @@ const ContactForm = () => {
           <textarea
             name="message"
             placeholder="Enter Something"
-            value={formData.message}
-            onChange={handleChange}
             required
           />
         </label>
 
         <button type="submit" id="contactUsSubmitBtn">SUBMIT</button>
       </form>
+
+      {/* Toast container */}
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 };

@@ -51,7 +51,7 @@ function TasksPage_03() {
   const handleSlide = (index) => setSlideIndex(index);
 
   return (
-    <Container fluid style={{ minHeight: '70vh' }}>
+    <Container fluid style={{ minHeight: '92.5vh' }} className='taskPageContainer'>
       <div className="d-flex justify-content-center flex-wrap mb-4">
         <Button variant="primary" className="mx-1" onClick={() => handleSlide(0)}>Level-1 Tasks</Button>
         <Button variant="success" className="mx-1" onClick={() => handleSlide(1)}>Level-2 Tasks</Button>

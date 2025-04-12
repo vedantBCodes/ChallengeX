@@ -7,7 +7,10 @@ import { MdMessage } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
 
+
 const ContactPage = () => {
+  
+    
   return (
     <>
     <main className='contactFormMainContainer'>
@@ -33,7 +36,7 @@ const ContactPage = () => {
           <span>{<HiMail fontSize="24px" />}&nbsp; VIA EMAIL FORM</span>
 
           <div className='d-flex justify-content-center align-items-center ' id="contactForm"><ContactForm/></div>
-          
+       
           </Col>
           <Col md={6}>
           <img src={contactusImage} alt="" className='img-fluid' />
