@@ -7,10 +7,7 @@ import { MdMessage } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
 
-
 const ContactPage = () => {
-  
-    
   return (
     <>
     <main className='contactFormMainContainer'>
