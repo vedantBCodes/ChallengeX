@@ -8,9 +8,8 @@ import Logout from "./Logout";
 import { useAuth } from '../context/AuthProvider';
 
 const Navbar_01 = () => {
-
-  const [authUser, setAuthUser] = useAuth();
-
+const [authUser, setAuthUser] = useAuth();
+console.log(authUser);
 
   return (
     <>
@@ -27,22 +26,16 @@ const Navbar_01 = () => {
               <Nav.Link as={Link} to="/task">Tasks</Nav.Link>
               <Nav.Link as={Link} onClick={() => window.open("https://vedantbcodes.github.io/My-personal-portfolio/", "_blank")}>About</Nav.Link>
               <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
-              <Nav.Link as={Link} to="/login">LogIn</Nav.Link>
-              {/* {authUser ? (
+              {/* <Nav.Link as={Link} to="/login">LogIn</Nav.Link> */}
+               {authUser ? (
               <Logout />
             ) : (
-              <div className="">
-                <a
-                  className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer"
-                  onClick={() =>
-                    document.getElementById("my_modal_3").showModal()
-                  }
-                >
-                  Login
-                </a>
-                <Login />
-              </div>
-            )} */}
+              // <div style={{color:'white',position:'relative',top:'10px',left:'5px'}}>
+              //     Login
+              //   {/* <Login /> */}
+              // </div>
+                <Nav.Link as={Link} to="/login">LogIn</Nav.Link>
+            )} 
             </Nav>
           </Navbar.Collapse>
         </Container>

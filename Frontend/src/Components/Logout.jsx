@@ -1,8 +1,12 @@
 import React from "react";
 import { useAuth } from "../context/AuthProvider";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Logout() {
+  const [hover, setHover] = useState(false);
+
   const [authUser, setAuthUser] = useAuth();
   const handleLogout = () => {
     try {
@@ -12,23 +16,24 @@ function Logout() {
       });
       localStorage.removeItem("Users");
       toast.success("Logout successfully");
-
       setTimeout(() => {
         window.location.reload();
-      }, 3000);
+      }, 1000);
     } catch (error) {
       toast.error("Error: " + error);
-      setTimeout(() => {}, 2000);
+      setTimeout(() => {}, 1000);
     }
   };
   return (
     <div>
-      <button
-        className="px-3 py-2 bg-red-500 text-white rounded-md cursor-pointer"
+      <Link
+        style={{color: hover ? 'white' : 'rgba(233, 231, 231, 0.55)',transition:'1s',textDecoration:'none',position:'relative',top:'10px',left:'5px'}}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
         onClick={handleLogout}
       >
         Logout
-      </button>
+      </Link>
     </div>
   );
 }
