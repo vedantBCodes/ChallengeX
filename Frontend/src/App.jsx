@@ -23,9 +23,13 @@ import ContactPage from './Components/Contact Us/ContactPage';
 import Signup from './Components/Signup';
 import Login from './Components/Login';
 import { Toaster } from "react-hot-toast";
+import { useAuth } from './context/AuthProvider';
+import { Navigate } from 'react-router-dom';
+
 // import { Navigate } from 'react-router-dom';
 
 function App() {
+  const [authUser, setAuthUser] = useAuth();
   return (
     <>
     <Toaster position="top-center" reverseOrder={false} />
@@ -41,7 +45,7 @@ function App() {
        <JoinNowSection_04/>
       <Footer/>
       </>} />
-      <Route path="/task" element={<><Navbar/> <TasksPage_03/></>} />
+      <Route path="/task" element={authUser ? (<><Navbar/> <TasksPage_03 /></>) : <Navigate to="/login" />} />
       <Route path="/contact" element={<><Navbar/> <ContactPage/></>} />
       <Route path="/signup" element={<><Navbar/> <Signup/></>} />
       <Route path="/login" element={<><Navbar/> <Login/></>} />
