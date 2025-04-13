@@ -3,10 +3,14 @@ import emailjs from 'emailjs-com';
 import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 const ContactForm = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const form = useRef();
-
   const sendEmail = (e) => {
     e.preventDefault();
   
@@ -24,6 +28,9 @@ const ContactForm = () => {
             autoClose: 3000,
           });
           form.current.reset();
+          setTimeout(()=> {
+            navigate(from, { replace: true });
+          },3100)
       }, (error) => {
           console.log(error.text);
           toast.update(toastId, {
