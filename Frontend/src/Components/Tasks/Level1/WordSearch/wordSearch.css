@@ -1,14 +1,45 @@
-main
+.wordSearchMainContainer
 {
-  background-color: rgb(194, 191, 189);
+  background-color: rgb(221, 218, 216);
   height: 92.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .word-search-container {
     text-align: center;
     font-family: Arial, sans-serif;
     height: 90vh;
   }
-  
+
+  /* Rules Page */
+.rulesPage {
+  max-width: 500px;
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  top: 10px;
+}
+
+.rulesPage h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.rulesPage ul {
+  text-align: left;
+  padding-left: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.rulesPage li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #444;
+}
   .wordSearchGrid {
     display: inline-block;
     margin: 20px auto;
@@ -95,3 +126,4 @@ main
     background-color: #f1f1f1;
     transition: 1s;
   }
+  

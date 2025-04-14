@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './quiz.css';
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import { useAuth } from "../../../../context/AuthProvider";
 
 function Quiz() {
   const [index, SetIndex] = useState(0);
@@ -11,7 +15,8 @@ function Quiz() {
   const [timeLeft, setTimeLeft] = useState(20); // 20 seconds
   const [showResult, setShowResult] = useState(false);
   const [quizData, setQuizData] = useState([]);
-
+  const [emailSent, setEmailSent] = useState(false); // new state to prevent multiple emails
+  const [authUser, setAuthUser] = useAuth();
   // Fetch quiz data mongodb collection
   useEffect(() => {
     const getQuiz = async () => {
@@ -25,6 +30,14 @@ function Quiz() {
     getQuiz();
   }, []);
 
+  useEffect(() => {
+    const passed = count > 8 && timeLeft > 0;
+    if (start && showResult && passed && !emailSent) {
+      const msg=`${authUser.fullname} has completed Quiz task and he/she won ₹12!`;
+      emailSend(authUser.fullname,authUser.email,msg);       setEmailSent(true); // mark as sent to prevent future calls
+    }
+  }, [showResult, count, timeLeft, start, emailSent]);
+  
   const Question = quizData[index];
 
   // ⏱️ Timer effect
@@ -71,7 +84,7 @@ function Quiz() {
 
   function startQuiz() {
     setStart(true);
-    setTimeLeft(20);
+    setTimeLeft(30);
     SetIndex(0);
     SetCount(0);
     setShowResult(false);

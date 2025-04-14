@@ -20,7 +20,7 @@ const Footer = () => {
           <p style={{color:'rgb(109, 214, 107)',fontSize:'20px'}}>Save this article</p>
           <p>Enter your email address and we'll send straight to your inbox .</p>
           <div>  
-            <input type="email" placeholder='Email Address ' id="emailInput" /> &nbsp;
+            <input type="email" placeholder='Email Address' id="emailInput" /> &nbsp;
             <button  id='emailBtn'>SEND</button>
             </div>     
           <div><input type="checkbox" id='checkbox' style={{width:'25px'}}/><label htmlFor="checkbox" id="footerCheckbox">Send me new released tasks from the Work at Home</label></div>

@@ -1,19 +1,21 @@
 import React from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 const Header_02 = () => {
   return (
     <>
-      <div className="headerContainer" style={{ textAlign: "left" }}>
-        <div className="headerSubContainer">
-          <h1>Money Doesn't Grow on Trees, But It Can Grow From Tasks!</h1>
-          <h6>- Vedant Yeotikar</h6>
-          <p>
-           <Button variant="light" style={{ color: 'black', backgroundColor: 'white', borderColor: 'white' }}>
-      Contact Me
-    </Button>
-          </p>
-        </div>
-      </div>
+     <div className="headerContainer">
+  <div className="headerSubContainer">
+    <h1>Money Doesn't Grow on Trees, But It Can Grow From Tasks!</h1>
+    <h6>- Vedant Yeotikar</h6>
+    <div className="button-wrapper">
+      <Link to='/contact' style={{ color: 'black', backgroundColor: 'white', borderColor: 'white',textDecoration:'none',padding:'10px 20px',borderRadius:'3px' }}>
+        Contact Me
+      </Link>
+    </div>
+  </div>
+</div>
+
       <Container className="mt-1">
         <Row className="d-flex , justify-content-start">
           <Col md={6} className=" text-white p-3">
@@ -95,10 +97,10 @@ const Header_02 = () => {
                 textAlign: "center",
                 color: "#29CD9C",
                 fontWeight: "900",
-                fontSize: "30px",
+                fontSize: "28px",
               }}
             >
-              H O W &nbsp; I T &nbsp; W O R K S
+              H O W &nbsp;I T &nbsp;W O R K S
             </p>
             <h2
               style={{
