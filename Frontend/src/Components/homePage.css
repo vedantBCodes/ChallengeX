@@ -11,8 +11,6 @@
 }
 .navContainer
 {
-    /* background-color: rgb(240, 241, 242); */
-    /* color: black; */
     width: 100vw;
     height: 5vh;
     color: white;
@@ -23,50 +21,124 @@
     font-weight: bolder;
     font-size: 2rem;
     color: rgb(212, 210, 210);
-    /* border-radius:'50%',
-    font-weight : 'bolder';
-    
-    /* font:'bolder', */
-    /* fontSize:'100px'; */ 
 }
 .navContainer
 {
   color: black;
 }
-.headerContainer
+#siteName
 {
-  height: 100vh;
-  background-image: url('../Images/headerBgImage3.jpg');
-  background-size: cover;       /* Ensures the image covers the container */
-  background-position: center;  /* Centers the image */
-  background-repeat: no-repeat; /* Prevents repeating */
   color: white;
+  font-size: 20px;
+}
+#welcomeStatement
+{
+  color: white;
+  font-size: 25px;
+}
+@media (max-width: 991px) {
+  .navbar .navbar-toggler {
+    order: 1;
+  }
+  .navbar .navbar-brand {
+    order: 2;
+  }
+  .navbar .navbar-collapse {
+    order: 3;
+  }
 }
 
-.headerSubContainer
-{
-    position: relative;
-    top: 200px;
-    width: 600px;
-    float: right;
+/* Header Page Css code Start */
+
+
+.headerContainer {
+  height: 100vh;
+  background-image: url('../Images/headerBgImage3.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 2rem;
+  box-sizing: border-box;
 }
-.headerSubContainer h1
-{
-    font-size: 50px;
-    color: white;
-   
+
+.headerSubContainer {
+  max-width: 600px;
+  padding: 20px;
+  text-align: left;
 }
-.headerSubContainer h6
-{
-    /* float: right; */
-    text-align: right;
-    font-size: 30px;
-    color: white;
+.headerSubContainer h1 {
+  font-size: 2.8rem;
+  color: white;
+  line-height: 1.2;
 }
-.headerSubContainer p
-{
+
+.headerSubContainer h6 {
+  text-align: right;
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 1rem;
+}
+
+.button-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* 🔻 Responsive Styles */
+@media (max-width: 768px) {
+  
+  .headerContainer {
+    background-image: url('../Images/headerbgImage4.jpg');
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    height: 60vh;
+    justify-content: center;
     text-align: center;
+    padding: 0 1rem;
+  }
+  .navContainer
+{
+    width: 100vw;
+    height: 6vh;
+    color: white;
+    position: relative;
+    bottom: 10px;
 }
+.navbar , .navContainer
+{
+  background-color: black;
+}
+#siteName
+{
+  display: none;
+}
+#welcomeStatement
+{
+  color: white;
+  font-size: 25px;
+}
+  .headerSubContainer {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .headerSubContainer h1 {
+    font-size: 1.5rem;
+  }
+
+  .headerSubContainer h6 {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}
+
+
+/* Header Page Css code Ends */
 .taskPageContainer
 {
   padding: 10px;
@@ -123,13 +195,21 @@
 {
   display: inline-block;
 }
-#joinBtn
+#joinNowBtn
   {
     color: blue;
     border: 1px solid blue;
+    background-color: white;
     padding: 10px;
     border-radius: 5px;
    
+  }
+  #joinNowBtn:hover
+  {
+    color: white;
+    border: 1px solid blue;
+    background-color: blue;
+    transition: 1s;
   }
 #earningBtn
 {
@@ -247,15 +327,17 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
   border: 1px solid blue;
   padding: 10px 40px;
   margin: 5px;
-  background-color:rgb(240, 237, 237);
+  background-color:white;
   border-radius: 5px;
 }
+
 #emailBtn:hover
 {
   color: white;
   background-color: blue;
   transition: 1s;
 }
+
 #emailInput
 {
   padding:10px 10px;
@@ -267,6 +349,18 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
 #emailInput::placeholder {
   color: blue;
 }
+/* @media (max-width: 768px) {
+  #emailInput
+{
+  padding:10px 10px;
+  font-size:20px;
+  color:'blue';
+  border:1px solid blue;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+} */
+
 .copyrightLine
 {
   padding-bottom: 5px;
@@ -288,7 +382,8 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
 }
 .subscribeBox:hover
 {
-  background-color: white;
+  color: white;
+  background-color: blue;
   transition: 1s;
 }
 .icons
@@ -301,3 +396,4 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
   box-shadow: 2px 2px 2px 2px white;
   transition: 0.5s;
 }
+

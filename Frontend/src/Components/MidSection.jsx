@@ -11,7 +11,7 @@ const MidSection = () => {
     <Container className='midsectionContainer'>
         <Row>
             <Col md={12}>
-            <h1 style={{fontWeight:'bolder',color:'#29CD9C',fontSize:'30px',position:'relative',top:'10px'}}>U N L O C K&nbsp;&nbsp;&nbsp;&nbsp;Y O U R&nbsp;&nbsp;&nbsp;&nbsp;P O T E N T I A L</h1>
+            <h1 style={{fontWeight:'bolder',color:'#29CD9C',fontSize:'30px',position:'relative',top:'10px'}}>U N L O C K&nbsp;&nbsp;&nbsp;Y O U R&nbsp;&nbsp;&nbsp;P O T E N T I A L</h1>
             <h2 style={{fontWeight:'900'}}>Level up, earn more.</h2>
             <p style={{color:'#727272',fontSize:'25px'}}>Get trained on more difficult tasks that pay more.</p>
             </Col>

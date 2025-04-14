@@ -30,6 +30,7 @@ const CommunitySection_05 = () => {
                   padding: "10px",
                   boxShadow: "2px 2px 2px 2px rgb(213, 212, 212)",
                   borderRadius: "10px",
+                  textAlign:'justify'
                 }}
               >
                 "This platform is a fun way to pass time while feeling
@@ -52,6 +53,7 @@ const CommunitySection_05 = () => {
                   padding: "10px",
                   boxShadow: "2px 2px 2px 2px rgb(213, 212, 212)",
                   borderRadius: "10px",
+                  textAlign:'justify'
                 }}
               >
                 "I like platforms that encourage learning and skill-building
@@ -73,6 +75,7 @@ const CommunitySection_05 = () => {
                   padding: "10px",
                   boxShadow: "2px 2px 2px 2px rgb(213, 212, 212)",
                   borderRadius: "10px",
+                  textAlign:'justify'
                 }}
               >
                 "Combining games and tasks with rewards makes this platform more

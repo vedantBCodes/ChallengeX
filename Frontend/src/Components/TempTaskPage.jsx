@@ -10,15 +10,16 @@ import PuzzleImage from '../Images/15PuzzleImage2.webp';
 import rapidFireImage from '../Images/rapidFireImage.webp';
 import calculatingSpeedTest from '../Images/calculatingSpeedTest.png';
 import sudukuImage from '../Images/sudukuTaskImage.webp';
-import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import './homePage.css';
 import axios from "axios";
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
-function TasksPage_03() {
+function TempTasksPage() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [cardData, setCardData] = useState([]);
 
@@ -42,6 +43,10 @@ function TasksPage_03() {
     }, []);
 
   const handleSlide = (index) => setSlideIndex(index);
+  const handleOnClick = (e) => {
+    e.preventDefault(); // Prevents navigation
+    toast.info('Login to proceed');
+  };
 
   return (
     <Container fluid style={{ minHeight: '92.5vh' }} className='taskPageContainer pt-3'>
@@ -59,8 +64,7 @@ function TasksPage_03() {
                 <Card.Title>{card.title}</Card.Title>
                 <Card.Text>{card.text}</Card.Text>
                 <Button className='mt-auto bg-primary'>
-                  <Link to={card.path} className='text-white text-decoration-none'>Start the Game</Link>
-                </Button>
+                <Link to="#" onClick={handleOnClick} className="text-white text-decoration-none">Start the Game</Link>                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -70,4 +74,4 @@ function TasksPage_03() {
   );
 }
 
-export default TasksPage_03;
+export default TempTasksPage;
