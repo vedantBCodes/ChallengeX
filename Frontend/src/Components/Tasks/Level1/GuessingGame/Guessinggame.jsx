@@ -5,11 +5,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
 import { useAuth } from "../../../../context/AuthProvider";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const Guessinggame = () => {
   const input = useRef(null);
   const msgContainer = useRef(null);
 
   const [num, setNum] = useState(Math.floor(Math.random() * 101));  
+  console.log(num);
+  
   const [isDisabled, setIsDisabled] = useState(true);
   const [guessNumbers, setGuessNumbers] = useState([]);
   const [start, setStart] = useState(false);
@@ -17,12 +21,17 @@ const Guessinggame = () => {
   const [resultMsg, setResultMsg] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [authUser, setAuthUser] = useAuth();
+  const navigate = useNavigate();
+
   
   useEffect(() => {
     if (gameOver && resultMsg === "win" && !emailSent) {
       const msg=`${authUser.fullname} has completed GuessingGame task and he/she won ₹12!`;
-      emailSend(authUser.fullname,authUser.email,msg); 
-      setEmailSent(true); // 👈 prevent future calls
+      emailSend(authUser.fullname,authUser.email,authUser.upiid,msg); 
+      // setEmailSent(true); // 👈 prevent future calls
+      setTimeout(() => {
+        navigate("/task");
+      }, 5000);
     }
   }, [gameOver, resultMsg, emailSent]);
   
