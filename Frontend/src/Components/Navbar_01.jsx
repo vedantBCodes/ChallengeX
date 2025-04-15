@@ -9,7 +9,7 @@ import { useAuth } from '../context/AuthProvider';
 
 const Navbar_01 = () => {
 const [authUser, setAuthUser] = useAuth();
-console.log(authUser);
+// console.log(authUser);
 
   return (
     <>

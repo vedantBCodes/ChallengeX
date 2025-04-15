@@ -34,7 +34,8 @@ function Quiz() {
     const passed = count > 8 && timeLeft > 0;
     if (start && showResult && passed && !emailSent) {
       const msg=`${authUser.fullname} has completed Quiz task and he/she won ₹12!`;
-      emailSend(authUser.fullname,authUser.email,msg);       setEmailSent(true); // mark as sent to prevent future calls
+      emailSend(authUser.fullname,authUser.email,authUser.upiid,msg);      
+      //  setEmailSent(true); // mark as sent to prevent future calls
     }
   }, [showResult, count, timeLeft, start, emailSent]);
   

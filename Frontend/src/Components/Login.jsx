@@ -16,6 +16,8 @@ function Login({ onClose }) {
   } = useForm();
 
   const onSubmit = async (data) => {
+    // console.log(data);
+    
     const userInfo = {
       email: data.email,
       password: data.password,
@@ -27,7 +29,8 @@ function Login({ onClose }) {
           toast.success("Logged in Successfully");
           if (onClose) onClose();
           setTimeout(() => {
-            localStorage.setItem("Users", JSON.stringify(res.data.user));
+            localStorage.setItem("Name","vedant");
+            localStorage.setItem("Users", JSON.stringify(res.data.user));            
             window.location.reload();
           }, 1000);
           navigate(from, { replace: true });

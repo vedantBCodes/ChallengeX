@@ -17,9 +17,12 @@ function Signup() {
   } = useForm();
 
   const onSubmit = async (data) => {
+    console.log(data);
+    
     const userInfo = {
       fullname: data.fullname,
       email: data.email,
+      upiid:data.upiid,
       password: data.password,
     };
 
@@ -70,6 +73,16 @@ function Signup() {
               {...register("email", { required: true })}
             />
             {errors.email && <p className="error">This field is required</p>}
+          </div>
+
+          <div className="form-group">
+            <label>Upi-ID</label>
+            <input
+              type="text"
+              placeholder="Enter your upiID"
+              {...register("upiid", { required: true })}
+            />
+            {errors.upiid && <p className="error">This field is required</p>}
           </div>
 
           <div className="form-group">

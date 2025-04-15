@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
 import { useAuth } from "../../../../context/AuthProvider";
-
+import { useNavigate } from "react-router-dom";
 const grid = [
   ["S", "C", "O", "D", "E"],
   ["M", "H", "T", "M", "L"],
@@ -22,7 +22,8 @@ const WordSearch = () => {
   const [gameOver, setGameOver] = useState(false);
   const [showGame, setShowGame] = useState(false); // Toggle between Rules and Game
   const [authUser, setAuthUser] = useAuth();
-  
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (foundWords.length === wordsToFind.length) {
@@ -87,7 +88,10 @@ const WordSearch = () => {
   useEffect(() => {
     if (gameOver && time !== 0) {
       const msg=`${authUser.fullname} has completed WordSearch task and he/she won ₹12!`;
-      emailSend(authUser.fullname,authUser.email,msg); 
+      emailSend(authUser.fullname,authUser.email,authUser.upiid,msg); 
+      setTimeout(() => {
+        navigate("/task");
+      }, 5000);
     }
   }, [gameOver, time]);
   return (
