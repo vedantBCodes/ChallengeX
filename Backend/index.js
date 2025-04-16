@@ -1,7 +1,7 @@
-
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+dotenv.config();
 import cors from "cors";
 
 import quizRoute from "./route/quiz.route.js";
@@ -16,14 +16,16 @@ app.use(express.json());
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
-const URI = process.env.MongoDBURI;
+// const URI = process.env.MongoDBURI;
 
 // connect to mongoDB
 try {
-    mongoose.connect(URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+    // mongoose.connect(URI, {
+    //     useNewUrlParser: true,
+    //     useUnifiedTopology: true,
+    // });
+    mongoose.connect(process.env.MONGO_URI);
+
     console.log("Connected to mongoDB");
 } catch (error) {
     console.log("Error: ", error);
