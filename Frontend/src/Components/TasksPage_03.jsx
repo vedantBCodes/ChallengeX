@@ -22,11 +22,20 @@ function TasksPage_03() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [cardData, setCardData] = useState([]);
 
-  const images = [
-    quizGameImage, tictactoeImage, guessingGameImage, wordSearchImage,
-    memoryGameImage, matchPairImage, typingSpeedTestImage, colorSpotterImage,
-    PuzzleImage, rapidFireImage, calculatingSpeedTest, sudukuImage
-  ];
+  const imageMap = {
+    quizGameImage,
+    tictactoeImage,
+    guessingGameImage,
+    wordSearchImage,
+    memoryGameImage,
+    matchPairImage,
+    typingSpeedTestImage,
+    colorSpotterImage,
+    PuzzleImage,
+    rapidFireImage,
+    calculatingSpeedTest,
+    sudukuImage
+  };
 
     // Fetch task data from mongodb collection
     useEffect(() => {
@@ -54,8 +63,8 @@ function TasksPage_03() {
         {cardData.slice(slideIndex * 4, slideIndex * 4 + 4).map((card, index) => (
           <Col key={index} xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 d-flex align-items-stretch" style={{ minWidth: '250px', maxWidth: '300px' }}>
             <Card className="custom-card w-100">
-              <Card.Img variant="top" src={images[slideIndex * 4 + index]} className="img-fluid" />
-              <Card.Body className="d-flex flex-column">
+            <Card.Img variant="top" src={imageMap[card.image]} className="img-fluid" />
+            <Card.Body className="d-flex flex-column">
                 <Card.Title>{card.title}</Card.Title>
                 <Card.Text>{card.text}</Card.Text>
                 <Button className='mt-auto bg-primary'>
