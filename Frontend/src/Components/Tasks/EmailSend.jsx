@@ -8,7 +8,10 @@ export const emailSend = (fullname, email, upiid, msgForUser,msgForAdmin,taskNam
     user_name: fullname,
     user_email: email,
     user_upiid: upiid,
+<<<<<<< HEAD
     message2:msgForUser,
+=======
+>>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
     message: msgForAdmin,
     taskName:taskName,
   };
