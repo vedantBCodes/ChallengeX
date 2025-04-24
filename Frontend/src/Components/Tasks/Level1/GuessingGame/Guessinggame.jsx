@@ -26,10 +26,10 @@ const Guessinggame = () => {
   
   useEffect(() => {
     if (gameOver && resultMsg === "win" && ! emailSent) {
-      const msgForAdmin=`${authUser.fullname} has completed GuessingGame task and he/she won ₹12!`;
-      const msgForUser=`You have completed GuessingGame task and won 12 rupees!`
       const taskName="GuessingGame";
-      emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForAdmin,msgForUser,taskName); 
+      const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹12!`;
+      const msgForUser=`You have completed GuessingGame task and won 12 rupees!`
+      emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForUser,msgForAdmin,taskName); 
       // setEmailSent(true); // 👈 prevent future calls
       setTimeout(() => {
         navigate("/task");

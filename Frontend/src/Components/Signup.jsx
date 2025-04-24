@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -14,36 +14,90 @@ function Signup() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
+  const [step, setStep] = useState(1); // Track whether the user is in OTP step
+  const [email, setEmail] = useState(''); // Track the email for OTP
+
+  // Handle initial form submission (to send OTP)
   const onSubmit = async (data) => {
-    console.log(data);
-    
+    console.log("User Info to send:", data);
+  
+    // Display loading toast
+    const loadingToastId = toast.loading("Sending OTP...");
+  
+    try {
+      await axios.post("http://localhost:4001/otp/send-otp", {
+        email: data.email,
+      });
+      // Success: Close the loading toast and show a success message
+      toast.success("OTP sent to email", { id: loadingToastId });
+      setEmail(data.email); // Save email for OTP verification
+      setStep(2); // Move to OTP verification step
+    } catch (error) {
+      // Error: Close the loading toast and show an error message
+      toast.error("Failed to send OTP", { id: loadingToastId });
+    }
+  };
+  
+
+  // Handle OTP verification submission
+  const handleOtpSubmit = async (e) => {
+    e.preventDefault();
+    const otp = watch("otp");
+  
+    if (!otp || !email) {
+      toast.error("OTP or email is missing.");
+      return;
+    }
+  
+    try {
+      // Ensure you're sending the correct email and OTP
+      const response = await axios.post("http://localhost:4001/otp/verify-otp", {
+        email, // Ensure the correct email is being sent
+        otp,   // Ensure the OTP value is captured correctly
+      });
+  
+      if (response.data.success) {
+        toast.success("OTP verified successfully!");
+        // After OTP verification, create the user
+        createUser();
+      } else {
+        toast.error("Invalid OTP");
+      }
+    } catch (error) {
+      console.error("Error verifying OTP:", error.response ? error.response.data : error);
+      toast.error("Error verifying OTP");
+    }
+  };
+  
+
+  // Handle user creation after OTP verification
+  const createUser = async () => {
+    const data = watch(); // Get all form data
+
     const userInfo = {
       fullname: data.fullname,
       email: data.email,
       phoneno: data.phoneno,
-      upiid:data.upiid,
+      upiid: data.upiid,
       password: data.password,
     };
 
-    await axios
-      .post("http://localhost:4001/user/signup", userInfo)
-      .then((res) => {
-        if (res.data) {
-          // alert("success"); ❌ Remove this
-          toast.success("Signup Successfully");
-          localStorage.setItem("Users", JSON.stringify(res.data.user));
-          navigate(from, { replace: true });
-        }
-        localStorage.setItem("Users", JSON.stringify(res.data.user));
-      })
-      .catch((err) => {
-        if (err.response) {
-          // alert("error"); ❌ Remove this
-          toast.error("Error: " + err.response.data.message);
-        }
-      });
+    try {
+      const response = await axios.post("http://localhost:4001/user/signup", userInfo);
+
+      if (response.data.success) {
+        toast.success("Signup Successful!");
+        localStorage.setItem("Users", JSON.stringify(response.data.user));
+        navigate(from, { replace: true });
+      } else {
+        toast.error("Signup Failed: " + response.data.message);
+      }
+    } catch (error) {
+      toast.error("Error: " + (error.response?.data?.message || "Failed to signup"));
+    }
   };
 
   return (
@@ -54,8 +108,9 @@ function Signup() {
             <Link to="/" className="close-button">✕</Link>
           </div>
 
-          <h3 style={{color:'blue'}}>Signup</h3>
+          <h3 style={{ color: 'blue' }}>Signup</h3>
 
+          {/* Fullname Field */}
           <div className="form-group">
             <label>Name</label>
             <input
@@ -66,6 +121,7 @@ function Signup() {
             {errors.fullname && <p className="error">This field is required</p>}
           </div>
 
+          {/* Email Field */}
           <div className="form-group">
             <label>Email</label>
             <input
@@ -75,6 +131,8 @@ function Signup() {
             />
             {errors.email && <p className="error">This field is required</p>}
           </div>
+
+          {/* Phone Number Field */}
           <div className="form-group">
             <label>Phone Number</label>
             <input
@@ -85,16 +143,18 @@ function Signup() {
             {errors.phoneno && <p className="error">This field is required</p>}
           </div>
 
+          {/* UPI ID Field */}
           <div className="form-group">
-            <label>Upi-ID</label>
+            <label>UPI ID</label>
             <input
               type="text"
-              placeholder="Enter your upiID"
+              placeholder="Enter your UPI ID"
               {...register("upiid", { required: true })}
             />
             {errors.upiid && <p className="error">This field is required</p>}
           </div>
 
+          {/* Password Field */}
           <div className="form-group">
             <label>Password</label>
             <input
@@ -105,15 +165,30 @@ function Signup() {
             {errors.password && <p className="error">This field is required</p>}
           </div>
 
+          {/* Submit Button */}
           <div className="form-actions">
-            <button type="submit">Signup</button>
-          </div>
-
-          <div className="login-link">
-            <span>Have an account? </span>
-            <Link to="/login">Login</Link>
+            <button type="submit">Send OTP</button>
           </div>
         </form>
+
+        {/* OTP Verification Form (only shown after OTP is sent) */}
+        {step === 2 && (
+          <form onSubmit={handleOtpSubmit}>
+            <div className="form-group">
+              <label>Enter OTP</label>
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                {...register("otp", { required: true })}
+              />
+              {errors.otp && <p className="error">OTP is required</p>}
+            </div>
+
+            <div className="form-actions">
+              <button type="submit">Verify OTP</button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

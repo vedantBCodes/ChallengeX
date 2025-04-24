@@ -23,11 +23,13 @@ const WordSearch = () => {
   const [showGame, setShowGame] = useState(false); // Toggle between Rules and Game
   const [authUser, setAuthUser] = useAuth();
   const navigate = useNavigate();
-
+  const [emailSent, setEmailSent] = useState(false);
+  const [resultMsg, setResultMsg] = useState("");
 
   useEffect(() => {
     if (foundWords.length === wordsToFind.length) {
       setGameOver(true);
+      setResultMsg("win"); // 👈 set result message to "win"
       return;
     }
     const timer = setInterval(() => {
@@ -41,7 +43,7 @@ const WordSearch = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, [foundWords]);
-
+  
   const checkWord = (selection) => {
     const word = selection.map((cell) => cell.letter).join("");
     if (foundWords.includes(word)) {
@@ -86,14 +88,18 @@ const WordSearch = () => {
     setGameOver(false);
   };
   useEffect(() => {
-    if (gameOver && time !== 0) {
-      const msg=`${authUser.fullname} has completed WordSearch task and he/she won ₹12!`;
-      emailSend(authUser.fullname,authUser.email,authUser.upiid,msg); 
-      setTimeout(() => {
-        navigate("/task");
-      }, 5000);
-    }
-  }, [gameOver, time]);
+      if (gameOver && resultMsg === "win" && ! emailSent) {
+        const taskName="WordSearch";
+        const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹12!`;
+        const msgForUser=`You have completed GuessingGame task and won 12 rupees!`
+        emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForUser,msgForAdmin,taskName); 
+        // setEmailSent(true); // 👈 prevent future calls
+        setTimeout(() => {
+          navigate("/task");
+        }, 5000);
+      }
+    }, [gameOver, resultMsg, emailSent]);
+    
   return (
     <main className="wordSearchMainContainer">
       <ToastContainer />
@@ -137,9 +143,12 @@ const WordSearch = () => {
           {gameOver ? (
             time === 0 ? (
               <h2>Game Over! Time's up!</h2>
-            ) : (
+            ) : 
+            (
+             
               <h2>Congratulations! You found all words!</h2>
             )
+            
           ) : (
             <h2>Time Left: {time} sec</h2>
           )}
