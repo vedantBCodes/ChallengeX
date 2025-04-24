@@ -23,20 +23,13 @@ const WordSearch = () => {
   const [showGame, setShowGame] = useState(false); // Toggle between Rules and Game
   const [authUser, setAuthUser] = useAuth();
   const navigate = useNavigate();
-<<<<<<< HEAD
   const [emailSent, setEmailSent] = useState(false);
   const [resultMsg, setResultMsg] = useState("");
-=======
-
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
 
   useEffect(() => {
     if (foundWords.length === wordsToFind.length) {
       setGameOver(true);
-<<<<<<< HEAD
       setResultMsg("win"); // 👈 set result message to "win"
-=======
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
       return;
     }
     const timer = setInterval(() => {
@@ -50,11 +43,7 @@ const WordSearch = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, [foundWords]);
-<<<<<<< HEAD
   
-=======
-
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
   const checkWord = (selection) => {
     const word = selection.map((cell) => cell.letter).join("");
     if (foundWords.includes(word)) {
@@ -99,7 +88,6 @@ const WordSearch = () => {
     setGameOver(false);
   };
   useEffect(() => {
-<<<<<<< HEAD
       if (gameOver && resultMsg === "win" && ! emailSent) {
         const taskName="WordSearch";
         const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹12!`;
@@ -112,16 +100,6 @@ const WordSearch = () => {
       }
     }, [gameOver, resultMsg, emailSent]);
     
-=======
-    if (gameOver && time !== 0) {
-      const msg=`${authUser.fullname} has completed WordSearch task and he/she won ₹12!`;
-      emailSend(authUser.fullname,authUser.email,authUser.upiid,msg); 
-      setTimeout(() => {
-        navigate("/task");
-      }, 5000);
-    }
-  }, [gameOver, time]);
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
   return (
     <main className="wordSearchMainContainer">
       <ToastContainer />
@@ -165,18 +143,12 @@ const WordSearch = () => {
           {gameOver ? (
             time === 0 ? (
               <h2>Game Over! Time's up!</h2>
-<<<<<<< HEAD
             ) : 
             (
              
               <h2>Congratulations! You found all words!</h2>
             )
             
-=======
-            ) : (
-              <h2>Congratulations! You found all words!</h2>
-            )
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
           ) : (
             <h2>Time Left: {time} sec</h2>
           )}

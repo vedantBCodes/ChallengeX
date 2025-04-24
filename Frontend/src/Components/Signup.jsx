@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
-=======
-import React from "react";
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -18,7 +14,6 @@ function Signup() {
     register,
     handleSubmit,
     formState: { errors },
-<<<<<<< HEAD
     watch,
   } = useForm();
 
@@ -82,18 +77,10 @@ function Signup() {
   const createUser = async () => {
     const data = watch(); // Get all form data
 
-=======
-  } = useForm();
-
-  const onSubmit = async (data) => {
-    console.log(data);
-    
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
     const userInfo = {
       fullname: data.fullname,
       email: data.email,
       phoneno: data.phoneno,
-<<<<<<< HEAD
       upiid: data.upiid,
       password: data.password,
     };
@@ -111,29 +98,6 @@ function Signup() {
     } catch (error) {
       toast.error("Error: " + (error.response?.data?.message || "Failed to signup"));
     }
-=======
-      upiid:data.upiid,
-      password: data.password,
-    };
-
-    await axios
-      .post("http://localhost:4001/user/signup", userInfo)
-      .then((res) => {
-        if (res.data) {
-          // alert("success"); ❌ Remove this
-          toast.success("Signup Successfully");
-          localStorage.setItem("Users", JSON.stringify(res.data.user));
-          navigate(from, { replace: true });
-        }
-        localStorage.setItem("Users", JSON.stringify(res.data.user));
-      })
-      .catch((err) => {
-        if (err.response) {
-          // alert("error"); ❌ Remove this
-          toast.error("Error: " + err.response.data.message);
-        }
-      });
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
   };
 
   return (
@@ -144,14 +108,9 @@ function Signup() {
             <Link to="/" className="close-button">✕</Link>
           </div>
 
-<<<<<<< HEAD
           <h3 style={{ color: 'blue' }}>Signup</h3>
 
           {/* Fullname Field */}
-=======
-          <h3 style={{color:'blue'}}>Signup</h3>
-
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
           <div className="form-group">
             <label>Name</label>
             <input
@@ -162,10 +121,7 @@ function Signup() {
             {errors.fullname && <p className="error">This field is required</p>}
           </div>
 
-<<<<<<< HEAD
           {/* Email Field */}
-=======
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
           <div className="form-group">
             <label>Email</label>
             <input
@@ -175,11 +131,8 @@ function Signup() {
             />
             {errors.email && <p className="error">This field is required</p>}
           </div>
-<<<<<<< HEAD
 
           {/* Phone Number Field */}
-=======
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
           <div className="form-group">
             <label>Phone Number</label>
             <input
@@ -190,29 +143,18 @@ function Signup() {
             {errors.phoneno && <p className="error">This field is required</p>}
           </div>
 
-<<<<<<< HEAD
           {/* UPI ID Field */}
           <div className="form-group">
             <label>UPI ID</label>
             <input
               type="text"
               placeholder="Enter your UPI ID"
-=======
-          <div className="form-group">
-            <label>Upi-ID</label>
-            <input
-              type="text"
-              placeholder="Enter your upiID"
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
               {...register("upiid", { required: true })}
             />
             {errors.upiid && <p className="error">This field is required</p>}
           </div>
 
-<<<<<<< HEAD
           {/* Password Field */}
-=======
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
           <div className="form-group">
             <label>Password</label>
             <input
@@ -223,7 +165,6 @@ function Signup() {
             {errors.password && <p className="error">This field is required</p>}
           </div>
 
-<<<<<<< HEAD
           {/* Submit Button */}
           <div className="form-actions">
             <button type="submit">Send OTP</button>
@@ -248,17 +189,6 @@ function Signup() {
             </div>
           </form>
         )}
-=======
-          <div className="form-actions">
-            <button type="submit">Signup</button>
-          </div>
-
-          <div className="login-link">
-            <span>Have an account? </span>
-            <Link to="/login">Login</Link>
-          </div>
-        </form>
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
       </div>
     </div>
   );
