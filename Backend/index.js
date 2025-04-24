@@ -7,11 +7,8 @@ import cors from "cors";
 import quizRoute from "./route/quiz.route.js";
 import userRoute from "./route/user.route.js";
 import taskRoute from "./route/task.route.js";
-<<<<<<< HEAD
 import otpRoutes from './route/otpRoutes.js'; // Adjust path if needed
 
-=======
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
 
 const app = express();
 
@@ -40,7 +37,6 @@ try {
 app.use("/quiz", quizRoute);
 app.use("/task", taskRoute);
 app.use("/user", userRoute);
-<<<<<<< HEAD
 app.use('/otp', otpRoutes);
 
 app.listen(PORT, () => {
@@ -49,9 +45,3 @@ app.listen(PORT, () => {
 
 
 
-=======
-
-app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
-});
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883

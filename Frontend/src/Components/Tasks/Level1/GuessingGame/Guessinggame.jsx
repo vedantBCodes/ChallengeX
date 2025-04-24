@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import "./Guessinggame.css";
-// import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import {emailSendToUser} from  '../../EmailSendToUser';
 import { useAuth } from "../../../../context/AuthProvider";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,8 @@ const Guessinggame = () => {
       const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹12!`;
       const msgForUser=`You have completed GuessingGame task and won 12 rupees!`
       emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForUser,msgForAdmin,taskName); 
-      // setEmailSent(true); // 👈 prevent future calls
+      emailSendToUser(authUser.fullname,authUser.email,msgForUser,taskName); 
+      setEmailSent(true); // 👈 prevent future calls
       setTimeout(() => {
         navigate("/task");
       }, 5000);

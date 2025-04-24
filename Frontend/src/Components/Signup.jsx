@@ -22,7 +22,7 @@ function Signup() {
 
   // Handle initial form submission (to send OTP)
   const onSubmit = async (data) => {
-    console.log("User Info to send:", data);
+    // console.log("User Info to send:", data);
   
     // Display loading toast
     const loadingToastId = toast.loading("Sending OTP...");
@@ -67,8 +67,8 @@ function Signup() {
         toast.error("Invalid OTP");
       }
     } catch (error) {
-      console.error("Error verifying OTP:", error.response ? error.response.data : error);
-      toast.error("Error verifying OTP");
+      const errorMessage = error.response?.data?.message || "Error verifying OTP";
+      toast.error(errorMessage);
     }
   };
   
