@@ -81,11 +81,8 @@ function Signup() {
       fullname: data.fullname,
       email: data.email,
       phoneno: data.phoneno,
-<<<<<<< HEAD
       upiid: data.upiid,
-=======
       upiid:data.upiid,
->>>>>>> a71515588f55ee6dffc6298bdecc08e86818e74c
       password: data.password,
     };
 

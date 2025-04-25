@@ -25,12 +25,8 @@
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "mongoose": "^8.13.2",
-<<<<<<< HEAD
     "nodemailer": "^6.10.1",
     "nodemon": "^3.1.9",
     "twilio": "^5.5.2"
-=======
-    "nodemon": "^3.1.9"
->>>>>>> a8b0efa49977b26a23fff21bf973ec6249dd6883
   }
 }
