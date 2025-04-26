@@ -82,7 +82,6 @@ function Signup() {
       email: data.email,
       phoneno: data.phoneno,
       upiid: data.upiid,
-      upiid:data.upiid,
       password: data.password,
     };
 
@@ -143,7 +142,7 @@ function Signup() {
           </div>
 
           {/* Phone Number Field */}
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Phone Number</label>
             <input
               type="number"
@@ -151,7 +150,7 @@ function Signup() {
               {...register("phoneno", { required: true })}
             />
             {errors.phoneno && <p className="error">This field is required</p>}
-          </div>
+          </div> */}
 
           {/* UPI ID Field */}
           <div className="form-group">
