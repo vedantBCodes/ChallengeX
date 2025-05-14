@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './quiz.css';
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+// import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import {emailSendToUser} from  '../../EmailSendToUser';
 import { useAuth } from "../../../../context/AuthProvider";
-
+import { useNavigate } from "react-router-dom";
 function Quiz() {
   const [index, SetIndex] = useState(0);
   const [count, SetCount] = useState(0);
@@ -17,6 +18,7 @@ function Quiz() {
   const [quizData, setQuizData] = useState([]);
   const [emailSent, setEmailSent] = useState(false); // new state to prevent multiple emails
   const [authUser, setAuthUser] = useAuth();
+  const navigate = useNavigate();
   // Fetch quiz data mongodb collection
   useEffect(() => {
     const getQuiz = async () => {
@@ -33,9 +35,15 @@ function Quiz() {
   useEffect(() => {
     const passed = count > 8 && timeLeft > 0;
     if (start && showResult && passed && !emailSent) {
-      const msg=`${authUser.fullname} has completed Quiz task and he/she won ₹12!`;
-      emailSend(authUser.fullname,authUser.email,authUser.upiid,msg);      
-      //  setEmailSent(true); // mark as sent to prevent future calls
+      const taskName="QuizTest";
+      const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹12!`;
+      const msgForUser=`You have completed ${taskName} task and won 12 rupees!`
+      emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForUser,msgForAdmin,taskName); 
+      emailSendToUser(authUser.fullname,authUser.email,msgForUser,taskName); 
+      setEmailSent(true); //  prevent future calls
+      setTimeout(() => {
+        navigate("/task");
+      }, 5000);
     }
   }, [showResult, count, timeLeft, start, emailSent]);
   
@@ -85,7 +93,7 @@ function Quiz() {
 
   function startQuiz() {
     setStart(true);
-    setTimeLeft(30);
+    setTimeLeft(20);
     SetIndex(0);
     SetCount(0);
     setShowResult(false);

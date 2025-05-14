@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./colorSpotter.css";
+import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import {emailSendToUser} from  '../../EmailSendToUser';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthProvider";
 
 const ColorSpotter = () => {
   const [gridSize, setGridSize] = useState(3);
@@ -9,8 +13,12 @@ const ColorSpotter = () => {
   const [isShaking, setIsShaking] = useState(false);
   const [baseColor, setBaseColor] = useState(getRandomRGBColor());
   const [gameStarted, setGameStarted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(20);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [gameResult, setGameResult] = useState(null); // "win" | "lose" | null
+  const navigate = useNavigate();
+  const [authUser, setAuthUser] = useAuth();
+  const [emailSent, setEmailSent] = useState(false);
+  
 
   useEffect(() => {
     localStorage.setItem("maxScore5", maxScore);
@@ -34,8 +42,17 @@ const ColorSpotter = () => {
     }
 
     if (gameStarted && timeLeft === 0) {
-      if (score > 10) {
+      if (score > 3) {
         setGameResult("win");
+        const taskName="ColorSpotter";
+        const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹12!`;
+        const msgForUser=`You have completed ${taskName} task and won 12 rupees!`
+        emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForUser,msgForAdmin,taskName); 
+        emailSendToUser(authUser.fullname,authUser.email,msgForUser,taskName); 
+        setEmailSent(true); //  prevent future calls
+        setTimeout(() => {
+          navigate("/task");
+        }, 5000);
       } else {
         setGameResult("lose");
       }
@@ -67,7 +84,7 @@ const ColorSpotter = () => {
   const handleStart = () => {
     setScore(0); // Reset score when starting the game
     setGridSize(3); // Reset grid size to 3
-    setTimeLeft(20); // Reset time left to 20 seconds
+    setTimeLeft(10); // Reset time left to 20 seconds
     setGameResult(null); // Reset game result
     setGameStarted(true); // Start the game
   };

@@ -10,10 +10,8 @@ import { useNavigate } from "react-router-dom";
 const Guessinggame = () => {
   const input = useRef(null);
   const msgContainer = useRef(null);
-
   const [num, setNum] = useState(Math.floor(Math.random() * 101));  
   console.log(num);
-  
   const [isDisabled, setIsDisabled] = useState(true);
   const [guessNumbers, setGuessNumbers] = useState([]);
   const [start, setStart] = useState(false);
@@ -31,12 +29,7 @@ const Guessinggame = () => {
       const msgForUser=`You have completed GuessingGame task and won 12 rupees!`
       emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForUser,msgForAdmin,taskName); 
       emailSendToUser(authUser.fullname,authUser.email,msgForUser,taskName); 
-      setEmailSent(true); // 👈 prevent future calls
-      // const msgForAdmin=`${authUser.fullname} has completed GuessingGame task and he/she won ₹12!`;
-      // const msgForUser=`You have completed GuessingGame task and won 12 rupees!`
-      // const taskName="GuessingGame";
-      emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForAdmin,msgForUser,taskName); 
-      // setEmailSent(true); // 👈 prevent future calls
+      setEmailSent(true); //  prevent future calls
       setTimeout(() => {
         navigate("/task");
       }, 5000);

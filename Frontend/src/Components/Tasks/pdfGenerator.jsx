@@ -16,7 +16,7 @@ export const generatePDFReport = (data) => {
   doc.text(`Email: ${data.user_email}`, 20, 50);
   doc.text(`Task Name: ${data.taskName}`, 20, 60);
   doc.text(`Message: ${data.message2}` , 20, 70);
-  doc.text(`Message: ${data.message}` , 20, 70);
+  // doc.text(`Message: ${data.message}` , 20, 70);
 
   doc.text(`Date: ${new Date().toLocaleString()}`, 20, 100);
 
