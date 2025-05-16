@@ -1,21 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./typingspeed.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthProvider";
+import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import {emailSendToUser} from  '../../EmailSendToUser';
+
 
 const TypingSpeedTest = () => {
-  const initialStatement =
-    "he turned in the research paper on friday otherwise he would have not passed the class";
+  const initialStatement =    "he turned in the research paper on friday otherwise he would have not passed the class";
 
   const [statement, setStatement] = useState(initialStatement);
   const [letterCnt, setLetterCnt] = useState(0);
-  const letterCntRef = useRef(0); // ⬅️ new ref for real-time count
+  const letterCntRef = useRef(0); //  new ref for real-time count
   const [time, setTime] = useState(10);
   const [stopTime, setStopTime] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(null);
   const [timerStarted, setTimerStarted] = useState(false);
   const [startGame, setStartGame] = useState(false); // For tracking if the game has started
   const [gameResult, setGameResult] = useState(null); // Store game result (win/lose)
-
+  
   const intervalRef = useRef(null);
+  const navigate = useNavigate();
+const [authUser, setAuthUser] = useAuth();
+const [emailSent, setEmailSent] = useState(false);
+
 
   const startTimer = () => {
     intervalRef.current = setInterval(() => {
@@ -27,6 +35,7 @@ const TypingSpeedTest = () => {
           setTypingSpeed(speed);
           if (statement.length === 0) {
             setGameResult("win");
+            
           } else {
             setGameResult("lose");
           }
@@ -38,19 +47,48 @@ const TypingSpeedTest = () => {
   };
 
   const handleTyping = (key) => {
-    if (stopTime) return;
+  if (stopTime || gameResult) return;
 
-    if (!timerStarted) {
-      setTimerStarted(true);
-      startTimer();
-    }
+  if (!timerStarted) {
+    setTimerStarted(true);
+    startTimer();
+  }
 
-    if (key === statement[0]) {
-      setLetterCnt((prevCount) => prevCount + 1);
-      letterCntRef.current += 1; // ⬅️ update ref too
-      setStatement((prev) => prev.slice(1));
+  if (key === statement[0]) {
+    setLetterCnt((prevCount) => prevCount + 1);
+    letterCntRef.current += 1;
+    const newStatement = statement.slice(1);
+    setStatement(newStatement);
+
+    // ✅ Check if it's the last correct letter
+    if (newStatement.length === 0) {
+      clearInterval(intervalRef.current); // stop timer
+      const elapsed = 10 - time; // calculate time taken
+      const speed = (letterCntRef.current / (elapsed || 1)).toFixed(2);
+      setTypingSpeed(speed);
+      setStopTime(true);
+      setGameResult("win");
     }
-  };
+  }
+};
+
+  useEffect(() => {
+  if (gameResult === "win" && !emailSent && authUser) {
+    const taskName = "TypingSpeedTest";
+    const msgForAdmin = `${authUser.fullname} has completed ${taskName} task and he/she won ₹15!`;
+    const msgForUser = `You have completed ${taskName} task and won ₹15!`;
+
+    emailSend(authUser.fullname, authUser.email, authUser.upiid, msgForUser, msgForAdmin, taskName);
+    emailSendToUser(authUser.fullname, authUser.email, msgForUser, taskName);
+
+    setEmailSent(true);
+
+    setTimeout(() => {
+      navigate("/task");
+    }, 5000);
+  }
+}, [gameResult, emailSent, authUser, navigate]);
+
 
   const handleKeyDown = (e) => {
     handleTyping(e.key);

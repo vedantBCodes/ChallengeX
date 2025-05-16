@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './matchpair.css';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthProvider";
+import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import {emailSendToUser} from  '../../EmailSendToUser';
 
 const symbolsSet1 = ['🍇', '🍉', '🚗', '🍌', '🏠', '🥭', '🍎', '🐯', '🍇', '🍉', '🚗', '🍌', '🏠', '🥭', '🍎', '🐯'];
 const symbolsSet2 = ['🍒', '🍓', '🐵', '🥝', '🍿', '🏀', '🎱', '🐻', '🍒', '🍓', '🐵', '🥝', '🍿', '🏀', '🎱', '🐻'];
@@ -17,6 +21,12 @@ function MatchPair() {
   const [timer, setTimer] = useState(30);
   const [timerId, setTimerId] = useState(null);
   const [loseReason, setLoseReason] = useState(null); // NEW
+const navigate = useNavigate();
+const [authUser, setAuthUser] = useAuth();
+const [gameCompleted, setGameCompleted] = useState(false);
+
+
+const [emailSent, setEmailSent] = useState(false);
 
   useEffect(() => {
     if (gameStarted) {
@@ -112,18 +122,43 @@ function MatchPair() {
     setGameStarted(true);
   };
 
-  useEffect(() => {
-    if (attemptCount >= 10 && matchCount < symbols.length / 2) {
-      setGameResult('lose');
-      setGameOver(true);
-      setLoseReason('attempts'); // Set reason
-      clearInterval(timerId);
-    } else if (matchCount === symbols.length / 2 && attemptCount <= 10) {
-      setGameResult('win');
-      setGameOver(true);
-      clearInterval(timerId);
+ useEffect(() => {
+  if (!gameStarted || gameCompleted || symbols.length === 0) return;
+  // Lose by attempts
+  if (attemptCount >= 10 && matchCount < symbols.length / 2) {
+    setGameResult('lose');
+    setGameOver(true);
+    setLoseReason('attempts');
+    clearInterval(timerId);
+    setGameCompleted(true);
+    return;
+  }
+
+  // Win condition
+  if (matchCount === symbols.length / 2 && attemptCount <= 10) {
+    setGameResult('win');
+    setGameOver(true);
+    clearInterval(timerId);
+    setGameCompleted(true);
+
+    if (authUser && !emailSent) {
+      const taskName = "MatchPair";
+      const msgForAdmin = `${authUser.fullname} has completed ${taskName} task and he/she won ₹15!`;
+      const msgForUser = `You have completed ${taskName} task and won 15 rupees!`;
+
+      emailSend(authUser.fullname, authUser.email, authUser.upiid, msgForUser, msgForAdmin, taskName);
+      emailSendToUser(authUser.fullname, authUser.email, msgForUser, taskName);
+      setEmailSent(true);
+
+      setTimeout(() => {
+        navigate("/task");
+      }, 5000);
     }
-  }, [matchCount, attemptCount, symbols.length, timerId]);
+  }
+}, [gameStarted, matchCount, attemptCount, symbols.length, timerId, emailSent, authUser, gameCompleted, navigate]);
+
+
+
 
   if (!gameStarted) {
     return (

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./memorygame.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthProvider";
+import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import {emailSendToUser} from  '../../EmailSendToUser';
 
 const MemoryGame = () => {
   const [start, setStart] = useState(false);
@@ -13,6 +17,27 @@ const MemoryGame = () => {
   const [timer, setTimer] = useState(25);
   const [gameWon, setGameWon] = useState(false);
   const [gameOverReason, setGameOverReason] = useState(null); // 'time' | 'lives'
+
+  const navigate = useNavigate();
+const [authUser, setAuthUser] = useAuth();
+const [emailSent, setEmailSent] = useState(false);
+
+
+  useEffect(() => {
+  if (gameWon && !emailSent && authUser) {
+    const taskName = "MemoryGame";
+    const msgForAdmin = `${authUser.fullname} has completed ${taskName} task and he/she won ₹15!`;
+    const msgForUser = `You have completed ${taskName} task and won 15 rupees!`;
+
+    emailSend(authUser.fullname, authUser.email, authUser.upiid, msgForUser, msgForAdmin, taskName);
+    emailSendToUser(authUser.fullname, authUser.email, msgForUser, taskName);
+
+    setEmailSent(true); // prevent future emails
+    setTimeout(() => {
+      navigate("/task");
+    }, 5000);
+  }
+}, [gameWon, emailSent, authUser, navigate]);
 
   // Handle timer countdown
   useEffect(() => {
@@ -60,7 +85,7 @@ const MemoryGame = () => {
 
         if (newSelection.length === coloredBoxCount) {
           setTimeout(() => {
-            if (level >= 5) {
+            if (level >= 6) {
               setGameWon(true);
             } else {
               setGridSize((prev) => prev + 1);
@@ -92,7 +117,7 @@ const MemoryGame = () => {
             <li>Then try to click the same boxes from memory.</li>
             <li>Each level adds more boxes and increases difficulty.</li>
             <li>You have 3 lives. One wrong click = one life lost.</li>
-            <li>Win by completing level 5 within 20 seconds!</li>
+            <li>Win by completing level 6 within 20 seconds!</li>
           </ul>
           <button className="startGameBtn" onClick={() => setStart(true)}>
             Start Game

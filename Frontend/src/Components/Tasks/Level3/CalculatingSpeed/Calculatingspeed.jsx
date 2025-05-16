@@ -2,13 +2,16 @@ import React, { useRef, useState, useEffect } from 'react';
 import './calculatingspeed.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthProvider";
+import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import {emailSendToUser} from  '../../EmailSendToUser';
 
 const Calculatingspeed = () => {
   const expressionBox = useRef(null);
   const answerBox = useRef(null);
   const startBtn = useRef(null);
   const submitBtn = useRef(null);
-
   const [gameStarted, setGameStarted] = useState(false);
   const [expression, setExpression] = useState(null);
   const [result, setResult] = useState(null);
@@ -18,6 +21,10 @@ const Calculatingspeed = () => {
   const [totalExpressionCount, setTotalExpressionCount] = useState(0);
   const [gameResult, setGameResult] = useState(null);
   const [startClicked, setStartClicked] = useState(false);
+  const navigate = useNavigate();
+  const [authUser, setAuthUser] = useAuth();   
+  const [emailSent, setEmailSent] = useState(false);
+
 
   useEffect(() => {
     let timer;
@@ -63,13 +70,26 @@ const Calculatingspeed = () => {
   };
 
   const handleGameOver = () => {
-    disableEverything();
-    if (correctExpressionCount >= 5) {
-      setGameResult('win');
-    } else {
-      setGameResult('lose');
+  disableEverything();
+  if (correctExpressionCount >= 5) {
+    setGameResult('win');
+    if (!emailSent && authUser) {
+      const taskName = "CalculatingSpeed";
+      const msgForAdmin = `${authUser.fullname} has completed ${taskName} task and he/she won ₹18!`;
+      const msgForUser = `You have completed ${taskName} task and won 18 rupees!`;
+
+      emailSend(authUser.fullname, authUser.email, authUser.upiid, msgForUser, msgForAdmin, taskName);
+      emailSendToUser(authUser.fullname, authUser.email, msgForUser, taskName);
+
+      setEmailSent(true);
+      setTimeout(() => {
+        navigate("/task");
+      }, 5000);
     }
-  };
+  } else {
+    setGameResult('lose');
+  }
+};
 
   const handleStartClick = () => {
     if (!isRunning && !startClicked) {
@@ -127,7 +147,6 @@ const Calculatingspeed = () => {
       </main>
     );
   }
-
   return (
     <main className="calculatingSpeedMainContainer">
       <div className="calculatingSpeedContainer">
@@ -142,7 +161,7 @@ const Calculatingspeed = () => {
           placeholder="Expression :"
           readOnly
           ref={expressionBox}
-          onCopy={(e) => e.preventDefault()}
+          // onCopy={(e) => e.preventDefault()}
         />
         <br />
         <br />

@@ -45,8 +45,8 @@ const ColorSpotter = () => {
       if (score > 3) {
         setGameResult("win");
         const taskName="ColorSpotter";
-        const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹12!`;
-        const msgForUser=`You have completed ${taskName} task and won 12 rupees!`
+        const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹15!`;
+        const msgForUser=`You have completed ${taskName} task and won 15 rupees!`
         emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForUser,msgForAdmin,taskName); 
         emailSendToUser(authUser.fullname,authUser.email,msgForUser,taskName); 
         setEmailSent(true); //  prevent future calls

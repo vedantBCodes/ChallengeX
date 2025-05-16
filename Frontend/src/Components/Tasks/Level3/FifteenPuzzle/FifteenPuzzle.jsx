@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './fifteenPuzzle.css';
 
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthProvider";
+import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
+import {emailSendToUser} from  '../../EmailSendToUser';
+
 function FifteenPuzzle() {
   const [buttons, setButtons] = useState([]);
   const [moveCount, setMoveCount] = useState(0);
@@ -8,6 +13,26 @@ function FifteenPuzzle() {
   const [gameStarted, setGameStarted] = useState(false);
   const [timer, setTimer] = useState(120);
   const [gameOver, setGameOver] = useState(false);
+  const navigate = useNavigate();
+const [authUser, setAuthUser] = useAuth();
+
+const [emailSent, setEmailSent] = useState(false); // ✅ Prevent duplicate emails
+
+useEffect(() => {
+  if (win && authUser && !emailSent) {
+    const taskName = "FifteenPuzzleGame";
+    const msgForAdmin = `${authUser.fullname} has completed ${taskName} task and he/she won ₹18!`;
+    const msgForUser = `You have completed ${taskName} task and won 18 rupees!`;
+
+    emailSend(authUser.fullname, authUser.email, authUser.upiid, msgForUser, msgForAdmin, taskName);
+    emailSendToUser(authUser.fullname, authUser.email, msgForUser, taskName);
+    setEmailSent(true); // ✅ Prevent future calls
+
+    setTimeout(() => {
+      navigate("/task");
+    }, 5000);
+  }
+}, [win, authUser, emailSent, navigate]);
 
   useEffect(() => {
     if (gameStarted) {
@@ -71,6 +96,7 @@ function FifteenPuzzle() {
     setMoveCount(0);
     setWin(false);
     setTimer(120);
+    // setWin(true);
     setGameOver(false);
   };
 
@@ -96,6 +122,7 @@ function FifteenPuzzle() {
   return (
     <main className='puzzleMainContainer'>
       <div className="puzzleContainer">
+        
         <h1>15 Puzzle Game</h1>
         <p>Total Moves: {moveCount}</p>
         <p>Time Left: {timer}s</p>
