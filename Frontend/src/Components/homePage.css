@@ -5,59 +5,152 @@
   box-sizing: border-box;
     color: black;
 }
-@media  (max-width: 0px) {
-  
-.navbar , .navContainer
-{
+/* Base Navbar Styling */
+.navbar {
   background-color: black;
-  /* height: 10vh; */
+  height: auto;
+  padding: 0.5rem 0rem;
+  z-index: 1000;
 }
 
-}
-.navbar , .navContainer
-{
-  background-color: black;
-  /* height: 10vh; */
-}
-
-.navContainer
-{
-    width: 100vw;
-    height: 5vh;
-    color: white;
+.navbar .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
 }
 
-.navContainer h1
-{
-    font-weight: bolder;
-    font-size: 2rem;
-    color: rgb(212, 210, 210);
-}
-.navContainer
-{
-  color: black;
-}
-#siteName
-{
+#siteName {
   color: white;
   font-size: 20px;
+  font-weight: bold;
 }
-#welcomeStatement
-{
+
+#welcomeStatement {
   color: white;
-  font-size: 25px;
+  font-size: 20px;
+  white-space: nowrap;
 }
+
+/* Navbar Inner Container */
+.navContainer {
+  width: 100%;
+  color: white;
+}
+
+/* Toggle button for small screens */
+.navbar-toggler {
+  border-color: white;
+}
+
+/* Nav links */
+.navbar-nav .nav-link {
+  color: white !important;
+  margin-left: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ccc !important;
+}
+
+/* Search bar input */
+form input[type="search"] {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  border: none;
+}
+
+/* Suggestions dropdown styling */
+.search-wrapper {
+  position: relative;
+}
+
+.suggestion-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 999;
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.suggestion-dropdown .list-group-item {
+  cursor: pointer;
+}
+
+.suggestion-dropdown .list-group-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive Design: Tablets and Up */
+@media (min-width: 768px) {
+  #welcomeStatement {
+    font-size: 22px;
+  }
+}
+
+/* Responsive Design: Desktops and Up */
+@media (min-width: 992px) {
+  .navbar {
+    height: auto;
+    padding: 0.4rem 1.2rem; /* Reduced padding for shorter height */
+  }
+
+  #siteName {
+    display: inline;
+    font-size: 22px; /* Slightly smaller */
+  }
+
+  #welcomeStatement {
+    font-size: 22px; /* Slightly smaller */
+  }
+}
+
+
+/* Responsive Design: Small Devices (Mobile) */
 @media (max-width: 991px) {
   .navbar .navbar-toggler {
     order: 1;
   }
+
   .navbar .navbar-brand {
     order: 2;
   }
+
   .navbar .navbar-collapse {
     order: 3;
+    background-color: black;
+    padding: 1rem;
+  }
+
+  #siteName {
+    display: none;
+  }
+
+  #welcomeStatement {
+    font-size: 18px;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-nav .nav-link {
+    margin: 0.5rem 0;
   }
 }
+
+
 
 /* Header Page Css code Start */
 
@@ -408,13 +501,4 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
   transition: 0.5s;
 }
 
-.suggestion-dropdown {
-  max-height: 200px;
-  overflow-y: auto;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 0 0 5px 5px;
-}
-.suggestion-dropdown .list-group-item {
-  cursor: pointer;
-}
+

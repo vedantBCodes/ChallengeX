@@ -28,7 +28,6 @@ function Logout() {
   return (
     <div> 
       <Link id="logoutLink"
-        style={{color: hover ? 'white' : 'rgba(233, 231, 231, 0.55)',transition:'1s',textDecoration:'none'}}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={handleLogout}

@@ -69,16 +69,32 @@ const Navbar_01 = () => {
 
             {/* Center: Search Bar */}
             <Col xs={12} md className="d-flex justify-content-center mb-2 mb-md-0">
-              <Form className="w-100 w-md-75" onSubmit={handleSubmit}>
-                <FormControl
-                  type="search"
-                  placeholder="Search tasks..."
-                  className="me-2"
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
-              </Form>
-            </Col>
+  <div className="search-wrapper position-relative w-100 w-md-75">
+    <Form onSubmit={handleSubmit}>
+      <FormControl
+        type="search"
+        placeholder="Search tasks..."
+        className="me-2"
+        value={searchQuery}
+        onChange={handleSearchChange}
+      />
+    </Form>
+    {filteredSuggestions.length > 0 && (
+      <ListGroup className="suggestion-dropdown">
+        {filteredSuggestions.map((task, idx) => (
+          <ListGroup.Item
+            key={idx}
+            action
+            onClick={() => handleSuggestionClick(task)}
+          >
+            {task.title}
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+    )}
+  </div>
+</Col>
+
 
             {/* Right: Navigation Links */}
             <Col xs={12} md="auto" className="d-flex justify-content-center justify-content-md-end">
@@ -97,19 +113,6 @@ const Navbar_01 = () => {
         </Container>
 
         {/* Suggestions Dropdown */}
-        {filteredSuggestions.length > 0 && (
-  <ListGroup className="suggestion-dropdown position-absolute w-100 px-4" style={{ top: '100%', zIndex: 999 }}>
-    {filteredSuggestions.map((task, idx) => (
-      <ListGroup.Item
-        key={idx}
-        action
-        onClick={() => handleSuggestionClick(task)}
-      >
-        {task.title}
-      </ListGroup.Item>
-    ))}
-  </ListGroup>
-)}
 
       </Navbar>
     </>

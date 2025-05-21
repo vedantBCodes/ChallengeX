@@ -4,7 +4,14 @@
 {
     position: relative;
     top: 0px;
-    left: 5px;
+    left: 10px;
+    color: white;
+    text-decoration: none;
+}
+#logoutLink:hover
+{
+    color: rgba(233, 231, 231, 0.55);
+    transition: 1.5s;
 }
 
 @media (max-width: 9991px) 
@@ -12,7 +19,15 @@
 #logoutLink
 {
     position: relative;
-    bottom: 25px;
+    bottom: 40px;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+}
+#logoutLink:hover
+{
+    color: rgba(233, 231, 231, 0.55);
+    transition: 1.5s;
 }
 }
 
