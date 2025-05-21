@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import './logout.css'
 
 function Logout() {
   const [hover, setHover] = useState(false);
@@ -25,9 +26,9 @@ function Logout() {
     }
   };
   return (
-    <div>
-      <Link
-        style={{color: hover ? 'white' : 'rgba(233, 231, 231, 0.55)',transition:'1s',textDecoration:'none',position:'relative',top:'10px',left:'5px'}}
+    <div> 
+      <Link id="logoutLink"
+        style={{color: hover ? 'white' : 'rgba(233, 231, 231, 0.55)',transition:'1s',textDecoration:'none'}}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={handleLogout}

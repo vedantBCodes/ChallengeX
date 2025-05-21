@@ -1,0 +1,18 @@
+
+
+#logoutLink
+{
+    position: relative;
+    top: 0px;
+    left: 5px;
+}
+
+@media (max-width: 9991px) 
+{
+#logoutLink
+{
+    position: relative;
+    bottom: 25px;
+}
+}
+

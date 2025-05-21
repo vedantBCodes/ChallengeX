@@ -25,8 +25,8 @@ const Suduko = () => {
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
   const navigate = useNavigate();
-const [authUser, setAuthUser] = useAuth();
-const [emailSent, setEmailSent] = useState(false);
+  const [authUser, setAuthUser] = useAuth();
+  const [emailSent, setEmailSent] = useState(false);
 
 
 

@@ -111,7 +111,7 @@ const WordSearch = () => {
           className="rulesPage"
           style={{ textAlign: "center", padding: "20px" }}
         >
-          <h1>Rules of the Game</h1>
+          <h1>Rules of the WordSearch Game</h1>
           <ul
             style={{
               textAlign: "left",

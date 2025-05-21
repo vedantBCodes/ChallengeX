@@ -5,10 +5,21 @@
   box-sizing: border-box;
     color: black;
 }
+@media  (max-width: 0px) {
+  
 .navbar , .navContainer
 {
   background-color: black;
+  /* height: 10vh; */
 }
+
+}
+.navbar , .navContainer
+{
+  background-color: black;
+  /* height: 10vh; */
+}
+
 .navContainer
 {
     width: 100vw;
@@ -397,3 +408,13 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
   transition: 0.5s;
 }
 
+.suggestion-dropdown {
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+}
+.suggestion-dropdown .list-group-item {
+  cursor: pointer;
+}
