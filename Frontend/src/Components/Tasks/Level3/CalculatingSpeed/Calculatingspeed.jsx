@@ -78,8 +78,8 @@ const Calculatingspeed = () => {
       const msgForAdmin = `${authUser.fullname} has completed ${taskName} task and he/she won ₹18!`;
       const msgForUser = `You have completed ${taskName} task and won 18 rupees!`;
 
-      emailSend(authUser.fullname, authUser.email, authUser.upiid, msgForUser, msgForAdmin, taskName);
-      emailSendToUser(authUser.fullname, authUser.email, msgForUser, taskName);
+      emailSend(authUser.fullname,authUser.email,msgForAdmin,msgForUser,taskName,authUser.upiid); 
+            emailSendToUser(authUser.fullname,authUser.email,msgForUser);
 
       setEmailSent(true);
       setTimeout(() => {

@@ -38,14 +38,15 @@ function Quiz() {
       const taskName="QuizTest";
       const msgForAdmin=`${authUser.fullname} has completed ${taskName} task and he/she won ₹12!`;
       const msgForUser=`You have completed ${taskName} task and won 12 rupees!`
-      emailSend(authUser.fullname,authUser.email,authUser.upiid,msgForUser,msgForAdmin,taskName); 
-      emailSendToUser(authUser.fullname,authUser.email,msgForUser,taskName); 
+      emailSend(authUser.fullname,authUser.email,msgForAdmin,msgForUser,taskName,authUser.upiid); 
+      emailSendToUser(authUser.fullname,authUser.email,msgForUser); 
       setEmailSent(true); //  prevent future calls
       setTimeout(() => {
         navigate("/task");
       }, 5000);
     }
   }, [showResult, count, timeLeft, start, emailSent]);
+  
   
   const Question = quizData[index];
 

@@ -21,6 +21,9 @@ export const generatePDFReport = (data) => {
   doc.text(`Date: ${new Date().toLocaleString()}`, 20, 100);
 
   // Save the file
-  const fileName = `${data.user_name.replace(/\s+/g, "_")}_${data.taskName}_receipt.pdf`;
-  doc.save(fileName);
+const safeUserName = data.user_name.trim().replace(/\s+/g, "_");
+const safeTaskName = data.taskName.trim().replace(/\s+/g, "_");
+
+const fileName = `${safeUserName}_${safeTaskName}_receipt.pdf`;
+doc.save(fileName);
 };

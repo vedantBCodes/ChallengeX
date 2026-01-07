@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 import './signup.css';
+import { sendOtpToUser } from "../Components/Tasks/EmailSendToUser"; // adjust path
 
 function Signup() {
   const location = useLocation();
@@ -21,25 +22,33 @@ function Signup() {
   const [email, setEmail] = useState(''); // Track the email for OTP
 
   // Handle initial form submission (to send OTP)
-  const onSubmit = async (data) => {
-    // console.log("User Info to send:", data);
+const onSubmit = async (data) => {
+  const loadingToastId = toast.loading("Sending OTP...");
+
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  const OTPmsgForUser = `Your OTP : ${otp}`;
+  console.log(otp);
   
-    // Display loading toast
-    const loadingToastId = toast.loading("Sending OTP...");
-  
-    try {
-      await axios.post("http://localhost:4001/otp/send-otp", {
-        email: data.email,
-      });
-      // Success: Close the loading toast and show a success message
-      toast.success("OTP sent to email", { id: loadingToastId });
-      setEmail(data.email); // Save email for OTP verification
-      setStep(2); // Move to OTP verification step
-    } catch (error) {
-      // Error: Close the loading toast and show an error message
-      toast.error("Failed to send OTP", { id: loadingToastId });
-    }
-  };
+
+  try {
+    // 1️⃣ Send OTP email (EmailJS – frontend)
+    await sendOtpToUser(data.fullname, data.email, OTPmsgForUser);
+
+    // 2️⃣ Store OTP in backend
+    await axios.post("http://localhost:4001/otp/send-otp", {
+      email: data.email,
+      otp,
+    });
+
+    toast.success("OTP sent to email", { id: loadingToastId });
+    setEmail(data.email);
+    setStep(2);
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to send OTP", { id: loadingToastId });
+  }
+};
+
   
 
   // Handle OTP verification submission

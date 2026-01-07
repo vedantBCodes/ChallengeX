@@ -21,12 +21,4 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-<<<<<<< HEAD
-*.sw*
 
-# Environment file
-.env
-=======
-*.sw?
-Backend/.env
->>>>>>> a71515588f55ee6dffc6298bdecc08e86818e74c
