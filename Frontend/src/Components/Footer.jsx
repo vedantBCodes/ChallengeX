@@ -2,7 +2,7 @@ import React from 'react'
 import { Container,Col,Row } from 'react-bootstrap'
 import emailIcon from '../Images/emailIcon.png'
 import "./homePage.css";
-import heartLogo from '../Images/heartLogo.png'
+import heartLogo from '../Images/heartlogo.png'
 import copyrightLogo from '../Images/copyrightIcon6.png'
 import instaLogo from '../Images/SocialMediaIcons/instagramIcon2.svg'
 import facebookLogo from '../Images/SocialMediaIcons/facebookIcon2.svg'

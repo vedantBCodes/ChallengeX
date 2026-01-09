@@ -41,7 +41,7 @@ function TasksPage_03() {
     useEffect(() => {
       const getTask = async () => {
         try {
-          const res = await axios.get("http://localhost:4001/task");
+          const res = await axios.get("https://challengex-1.onrender.com/task")
           setCardData(res.data);
         } catch (error) {
           console.log(error);
