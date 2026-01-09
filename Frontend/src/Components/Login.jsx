@@ -23,7 +23,7 @@ function Login({ onClose }) {
       password: data.password,
     };
     await axios
-      .post("http://localhost:4001/user/login", userInfo)
+      .post("https://challengex-1.onrender.com/user/login", userInfo)
       .then((res) => {
         if (res.data) {
           toast.success("Logged in Successfully");

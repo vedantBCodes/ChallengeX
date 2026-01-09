@@ -35,7 +35,7 @@ const onSubmit = async (data) => {
     await sendOtpToUser(data.fullname, data.email, OTPmsgForUser);
 
     // 2️⃣ Store OTP in backend
-    await axios.post("http://localhost:4001/otp/send-otp", {
+    await axios.post("https://challengex-1.onrender.com/otp/send-otp", {
       email: data.email,
       otp,
     });
@@ -63,7 +63,7 @@ const onSubmit = async (data) => {
   
     try {
       // Ensure you're sending the correct email and OTP
-      const response = await axios.post("http://localhost:4001/otp/verify-otp", {
+      const response = await axios.post("https://challengex-1.onrender.com/otp/verify-otp", {
         email, // Ensure the correct email is being sent
         otp,   // Ensure the OTP value is captured correctly
       });
@@ -95,7 +95,7 @@ const onSubmit = async (data) => {
     };
 
     try {
-      const response = await axios.post("http://localhost:4001/user/signup", userInfo);
+      const response = await axios.post("https://challengex-1.onrender.com/user/signup", userInfo);
 
       if (response.data.success) {
         toast.success("Signup Successful!");

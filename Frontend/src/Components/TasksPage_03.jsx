@@ -6,7 +6,7 @@ import memoryGameImage from '../Images/memoryGameImage.png';
 import matchPairImage from '../Images/matchPairImage.png';
 import typingSpeedTestImage from '../Images/typingSpeedTestImage.webp';
 import colorSpotterImage from '../Images/colorSpotterImage.png';
-import PuzzleImage from '../Images/15PuzzleImage2.webp';
+import PuzzleImage from '../Images/15puzzleImage2.webp';
 import rapidFireImage from '../Images/rapidFireImage.webp';
 import calculatingSpeedTest from '../Images/calculatingSpeedTest.png';
 import sudukuImage from '../Images/sudukuTaskImage.webp';
