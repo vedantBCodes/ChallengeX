@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./Guessinggame.css";
+import "./guessinggame.css";
 import "react-toastify/dist/ReactToastify.css";
 import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
 import {emailSendToUser} from  '../../EmailSendToUser';

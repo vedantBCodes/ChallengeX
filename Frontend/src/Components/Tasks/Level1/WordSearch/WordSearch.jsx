@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./WordSearch.css";
+import "./wordSearch.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a function
