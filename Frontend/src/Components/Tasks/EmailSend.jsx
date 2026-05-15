@@ -2,6 +2,7 @@
 import emailjs from 'emailjs-com';
 import { toast } from 'react-toastify';
 import { generatePDFReport } from './pdfGenerator';
+import { EMAILJS } from "../../config/emailjsConfig";
 
 export const emailSend = (fullname, email ,msgForAdmin,msgForUser,taskName,upiid) => { //This is the function that sends email to admin
   const templateParams = {
@@ -17,10 +18,10 @@ export const emailSend = (fullname, email ,msgForAdmin,msgForUser,taskName,upiid
 
   emailjs
     .send(
-      "service_tm5bnf7",          // Service ID
-      "template_ner4c8j",          // Template ID
+      EMAILJS.admin.serviceId,          // Service ID
+      EMAILJS.admin.templateId,          // Template ID
       templateParams,
-      "yo6arUy27NQyfNWHk"          // User/Public Key
+      EMAILJS.admin.publicKey          // User/Public Key
     )
     .then(() => {
       toast.update(toastId, {

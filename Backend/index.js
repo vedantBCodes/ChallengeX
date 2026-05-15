@@ -9,6 +9,7 @@ import quizRoute from "./route/quiz.route.js";
 import userRoute from "./route/user.route.js";
 import taskRoute from "./route/task.route.js";
 import otpRoutes from "./route/otpRoutes.js"; // Adjust path if needed
+import upiRoute from "./route/upi.route.js";
 
 // Configure environment variables
 dotenv.config();
@@ -19,6 +20,10 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.json({ success: true, message: "ChallengeX API is running" });
+});
 
 // Connect to MongoDB
 const connectDB = async () => {
@@ -36,6 +41,7 @@ app.use("/quiz", quizRoute);
 app.use("/task", taskRoute);
 app.use("/user", userRoute);
 app.use("/otp", otpRoutes);
+app.use("/upi", upiRoute);
 
 // Start server
 const PORT = process.env.PORT || 4000;

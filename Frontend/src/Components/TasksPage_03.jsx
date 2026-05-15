@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import './homePage.css';
 import axios from "axios";
+import { API_BASE_URL } from '../config/api';
 
 
 function TasksPage_03() {
@@ -41,7 +42,7 @@ function TasksPage_03() {
     useEffect(() => {
       const getTask = async () => {
         try {
-          const res = await axios.get("https://challengex-1.onrender.com/task")
+          const res = await axios.get(`${API_BASE_URL}/task`)
           setCardData(res.data);
         } catch (error) {
           console.log(error);
@@ -51,6 +52,12 @@ function TasksPage_03() {
     }, []);
 
   const handleSlide = (index) => setSlideIndex(index);
+  const levelStart = slideIndex * 4 + 1;
+  const levelEnd = levelStart + 3;
+  const visibleCards = cardData
+    .map((card) => ({ ...card, _idNum: Number(card.id) }))
+    .filter((card) => Number.isFinite(card._idNum) && card._idNum >= levelStart && card._idNum <= levelEnd)
+    .sort((a, b) => a._idNum - b._idNum);
 
   return (
     <Container fluid style={{ minHeight: '92.5vh' }} className='taskPageContainer pt-3'>
@@ -60,8 +67,8 @@ function TasksPage_03() {
         <Button variant="danger" className="mx-1" onClick={() => handleSlide(2)}>Level-3 Tasks</Button>
       </div>
       <Row className="justify-content-center g-2">
-        {cardData.slice(slideIndex * 4, slideIndex * 4 + 4).map((card, index) => (
-          <Col key={index} xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 d-flex align-items-stretch" style={{ minWidth: '250px', maxWidth: '300px' }}>
+        {visibleCards.map((card) => (
+          <Col key={card._id || card.id} xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 d-flex align-items-stretch" style={{ minWidth: '250px', maxWidth: '300px' }}>
             <Card className="custom-card w-100">
             <Card.Img variant="top" src={imageMap[card.image]} className="img-fluid" />
             <Card.Body className="d-flex flex-column">

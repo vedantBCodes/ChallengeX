@@ -1,18 +1,70 @@
 import User from "../model/user.model.js";
 import bcryptjs from "bcryptjs";
+import { validateUpiCore } from "./upiValidation.controller.js";
+
+const escapeRegex = (value = "") => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const findUserByEmail = (email = "") => {
+    const normalizedEmail = email.trim().toLowerCase();
+    return User.findOne({
+        email: { $regex: `^${escapeRegex(normalizedEmail)}$`, $options: "i" },
+    });
+};
+
+export const checkEmail = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ message: "Email is required" });
+        }
+
+        const user = await findUserByEmail(email);
+
+        if (user) {
+            return res.status(409).json({
+                exists: true,
+                message: "User already exists",
+            });
+        }
+
+        return res.status(200).json({
+            exists: false,
+            message: "Email is available",
+        });
+    } catch (error) {
+        console.log("Error: " + error.message);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
 export const signup = async(req, res) => {
     try {
         const { fullname, email ,phoneno, upiid, password } = req.body;        
-        const user = await User.findOne({ email });
+        const validationResult = await validateUpiCore(upiid);
+        const enforceProviderValidation = process.env.UPI_VALIDATE_ON_SIGNUP === "true";
+
+        if (!validationResult.valid) {
+            return res.status(400).json({ message: validationResult.reason });
+        }
+
+        if (enforceProviderValidation && validationResult.source !== "provider") {
+            return res.status(400).json({
+                message: "UPI provider validation is mandatory. Please configure provider credentials.",
+            });
+        }
+
+        const normalizedEmail = email.trim().toLowerCase();
+        const user = await findUserByEmail(normalizedEmail);
         if (user) {
             return res.status(400).json({ message: "User already exists" });
         }
         const hashPassword = await bcryptjs.hash(password, 10);
         const createdUser = new User({
             fullname: fullname,
-            email: email,
+            email: normalizedEmail,
             phoneno: phoneno,
-            upiid: upiid,
+            upiid: validationResult.normalizedUpiid,
             password: hashPassword,
            
             // password:password

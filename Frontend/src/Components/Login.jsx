@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 import './login.css'
+import { API_BASE_URL } from "../config/api";
 
 function Login({ onClose }) {
   const location = useLocation();
@@ -23,7 +24,7 @@ function Login({ onClose }) {
       password: data.password,
     };
     await axios
-      .post("https://challengex-1.onrender.com/user/login", userInfo)
+      .post(`${API_BASE_URL}/user/login`, userInfo)
       .then((res) => {
         if (res.data) {
           toast.success("Logged in Successfully");

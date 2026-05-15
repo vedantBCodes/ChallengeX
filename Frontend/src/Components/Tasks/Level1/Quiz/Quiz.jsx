@@ -7,6 +7,7 @@ import { emailSend } from "../../EmailSend"; // ✅ Assuming you export it as a 
 import {emailSendToUser} from  '../../EmailSendToUser';
 import { useAuth } from "../../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from '../../../../config/api';
 function Quiz() {
   const [index, SetIndex] = useState(0);
   const [count, SetCount] = useState(0);
@@ -23,7 +24,7 @@ function Quiz() {
   useEffect(() => {
     const getQuiz = async () => {
       try {
-        const res = await axios.get("http://localhost:4001/quiz");
+        const res = await axios.get(`${API_BASE_URL}/quiz`);
         setQuizData(res.data);
       } catch (error) {
         console.log(error);

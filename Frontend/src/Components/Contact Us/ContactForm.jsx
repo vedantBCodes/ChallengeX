@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation, useNavigate } from "react-router-dom";
+import { EMAILJS } from "../../config/emailjsConfig";
 
 
 const ContactForm = () => {
@@ -17,7 +18,12 @@ const ContactForm = () => {
     // Show pending toast
     const toastId = toast.loading('📨 Sending your message...');
   
-    emailjs.sendForm('EmailjsServiceID', 'template_ek7wc0b', form.current, 'yo6arUy27NQyfNWHk')
+    emailjs.sendForm(
+      EMAILJS.contact.serviceId,
+      EMAILJS.contact.templateId,
+      form.current,
+      EMAILJS.contact.publicKey
+    )
       .then((result) => {
           console.log(result.text);
           toast.update(toastId, {

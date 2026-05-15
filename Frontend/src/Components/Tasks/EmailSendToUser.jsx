@@ -1,6 +1,7 @@
 // emailService.js
 import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
+import { EMAILJS } from "../../config/emailjsConfig";
 
 const emailSendToUser = (fullname, email, msgForUser) => {
   const templateParams = {
@@ -11,10 +12,10 @@ const emailSendToUser = (fullname, email, msgForUser) => {
 
   emailjs
     .send(
-      "service_tm5bnf7",
-      "template_ek7wc0b",
+      EMAILJS.user.serviceId,
+      EMAILJS.user.templateId,
       templateParams,
-      "yo6arUy27NQyfNWHk"
+      EMAILJS.user.publicKey
     )
     .then(() => {
       toast.success("✅ Email sent successfully!");
@@ -29,14 +30,14 @@ const sendOtpToUser = (fullname, email, OTPmsgForUser) => {
   const templateParams = {
     user_name: fullname,
     user_email: email,
-    OTPmsgForUser: OTPmsgForUser,
+    otp: OTPmsgForUser,
   };
 
   return emailjs.send(
-    "service_tm5bnf7",
-    "template_ek7wc0b", // 🔴 OTP template ID
+    EMAILJS.otp.serviceId,
+    EMAILJS.otp.templateId, // 🔴 OTP template ID
     templateParams,
-    "yo6arUy27NQyfNWHk"
+    EMAILJS.otp.publicKey
   );
 };
 

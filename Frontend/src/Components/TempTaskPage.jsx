@@ -6,7 +6,7 @@ import memoryGameImage from '../Images/memoryGameImage.png';
 import matchPairImage from '../Images/matchPairImage.png';
 import typingSpeedTestImage from '../Images/typingSpeedTestImage.webp';
 import colorSpotterImage from '../Images/colorSpotterImage.png';
-import PuzzleImage from '../Images/15PuzzleImage2.webp';
+import PuzzleImage from '../Images/15puzzleImage2.webp';
 import rapidFireImage from '../Images/rapidFireImage.webp';
 import calculatingSpeedTest from '../Images/calculatingSpeedTest.png';
 import sudukuImage from '../Images/sudukuTaskImage.webp';
@@ -17,23 +17,33 @@ import './homePage.css';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { API_BASE_URL } from '../config/api';
 
 
 function TempTasksPage() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [cardData, setCardData] = useState([]);
 
-  const images = [
-    quizGameImage, tictactoeImage, guessingGameImage, wordSearchImage,
-    memoryGameImage, matchPairImage, typingSpeedTestImage, colorSpotterImage,
-    PuzzleImage, rapidFireImage, calculatingSpeedTest, sudukuImage
-  ];
+  const imageMap = {
+    quizGameImage,
+    tictactoeImage,
+    guessingGameImage,
+    wordSearchImage,
+    memoryGameImage,
+    matchPairImage,
+    typingSpeedTestImage,
+    colorSpotterImage,
+    PuzzleImage,
+    rapidFireImage,
+    calculatingSpeedTest,
+    sudukuImage
+  };
 
     // Fetch task data from mongodb collection
     useEffect(() => {
       const getTask = async () => {
         try {
-          const res = await axios.get("https://challengex-1.onrender.com/task");
+          const res = await axios.get(`${API_BASE_URL}/task`);
           setCardData(res.data);
         } catch (error) {
           console.log(error);
@@ -47,6 +57,12 @@ function TempTasksPage() {
     e.preventDefault(); // Prevents navigation
     toast.info('Login to proceed');
   };
+  const levelStart = slideIndex * 4 + 1;
+  const levelEnd = levelStart + 3;
+  const visibleCards = cardData
+    .map((card) => ({ ...card, _idNum: Number(card.id) }))
+    .filter((card) => Number.isFinite(card._idNum) && card._idNum >= levelStart && card._idNum <= levelEnd)
+    .sort((a, b) => a._idNum - b._idNum);
 
   return (
     <Container fluid style={{ minHeight: '92.5vh' }} className='taskPageContainer pt-3'>
@@ -56,10 +72,10 @@ function TempTasksPage() {
         <Button variant="danger" className="mx-1" onClick={() => handleSlide(2)}>Level-3 Tasks</Button>
       </div>
       <Row className="justify-content-center g-2">
-        {cardData.slice(slideIndex * 4, slideIndex * 4 + 4).map((card, index) => (
-          <Col key={index} xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 d-flex align-items-stretch" style={{ minWidth: '250px', maxWidth: '300px' }}>
+        {visibleCards.map((card) => (
+          <Col key={card._id || card.id} xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 d-flex align-items-stretch" style={{ minWidth: '250px', maxWidth: '300px' }}>
             <Card className="custom-card w-100">
-              <Card.Img variant="top" src={images[slideIndex * 4 + index]} className="img-fluid" />
+              <Card.Img variant="top" src={imageMap[card.image]} className="img-fluid" />
               <Card.Body className="d-flex flex-column">
                 <Card.Title>{card.title}</Card.Title>
                 <Card.Text>{card.text}</Card.Text>

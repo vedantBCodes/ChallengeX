@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import './signup.css';
 import { sendOtpToUser } from "../Components/Tasks/EmailSendToUser"; // adjust path
+import { API_BASE_URL } from "../config/api";
 
 function Signup() {
   const location = useLocation();
@@ -24,33 +25,46 @@ function Signup() {
   // Handle initial form submission (to send OTP)
 const onSubmit = async (data) => {
   const loadingToastId = toast.loading("Sending OTP...");
-
-  const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  const OTPmsgForUser = `Your OTP : ${otp}`;
-  console.log(otp);
-  
+  const normalizedEmail = data.email?.trim().toLowerCase();
+  const normalizedUpiId = data.upiid?.trim().toLowerCase();
 
   try {
-    // 1️⃣ Send OTP email (EmailJS – frontend)
-    await sendOtpToUser(data.fullname, data.email, OTPmsgForUser);
+    await axios.post(`${API_BASE_URL}/user/check-email`, {
+      email: normalizedEmail,
+    });
 
-    // 2️⃣ Store OTP in backend
-    await axios.post("https://challengex-1.onrender.com/otp/send-otp", {
-      email: data.email,
+    // 1) Validate UPI with backend before sending OTP.
+    const upiValidationResponse = await axios.post(`${API_BASE_URL}/upi/validate`, {
+      upiid: normalizedUpiId,
+    });
+
+    if (!upiValidationResponse.data?.valid) {
+      toast.error(upiValidationResponse.data?.message || "Invalid UPI ID", {
+        id: loadingToastId,
+      });
+      return;
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const OTPmsgForUser = `Your OTP : ${otp}`;
+
+    // 1️⃣ Send OTP email (EmailJS – frontend)
+    await sendOtpToUser(data.fullname, normalizedEmail, OTPmsgForUser);
+
+    // 2) Store OTP in backend.
+    await axios.post(`${API_BASE_URL}/otp/send-otp`, {
+      email: normalizedEmail,
       otp,
     });
 
     toast.success("OTP sent to email", { id: loadingToastId });
-    setEmail(data.email);
+    setEmail(normalizedEmail);
     setStep(2);
   } catch (error) {
     console.error(error);
-    toast.error("Failed to send OTP", { id: loadingToastId });
+    toast.error(error.response?.data?.message || "Failed to send OTP", { id: loadingToastId });
   }
 };
-
-  
-
   // Handle OTP verification submission
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
@@ -63,7 +77,7 @@ const onSubmit = async (data) => {
   
     try {
       // Ensure you're sending the correct email and OTP
-      const response = await axios.post("https://challengex-1.onrender.com/otp/verify-otp", {
+      const response = await axios.post(`${API_BASE_URL}/otp/verify-otp`, {
         email, // Ensure the correct email is being sent
         otp,   // Ensure the OTP value is captured correctly
       });
@@ -88,14 +102,14 @@ const onSubmit = async (data) => {
 
     const userInfo = {
       fullname: data.fullname,
-      email: data.email,
+      email: data.email?.trim().toLowerCase(),
       phoneno: data.phoneno,
-      upiid: data.upiid,
+      upiid: data.upiid?.trim().toLowerCase(),
       password: data.password,
     };
 
     try {
-      const response = await axios.post("https://challengex-1.onrender.com/user/signup", userInfo);
+      const response = await axios.post(`${API_BASE_URL}/user/signup`, userInfo);
 
       if (response.data.success) {
         toast.success("Signup Successful!");
