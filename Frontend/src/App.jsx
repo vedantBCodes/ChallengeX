@@ -7,7 +7,7 @@ import JoinNowSection_04 from './Components/JoinNowSection_04';
 import CommunitySection_05 from './Components/CommunitySection_05';
 import Quiz from './Components/Tasks/Level1/Quiz/Quiz'
 import Footer from './Components/Footer';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import TicTacToe from './Components/Tasks/Level1/Tic-Tac-Toe/TicTacToe';
 import Guessinggame from './Components/Tasks/Level1/GuessingGame/Guessinggame';
 import MatchPair from './Components/Tasks/Level2/MatchPair/MatchPair';
@@ -74,4 +74,3 @@ function App() {
 }
 
 export default App
-
