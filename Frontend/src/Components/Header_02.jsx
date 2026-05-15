@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header_02 = () => {
   return (
     <>
-     <div className="headerContainer">
+     <div className="headerContainer homeTextCenter">
   <div className="headerSubContainer">
     <h1>Money Doesn't Grow on Trees, But It Can Grow From Tasks!</h1>
     <h6>- Vedant Yeotikar</h6>
@@ -16,7 +16,7 @@ const Header_02 = () => {
   </div>
 </div>
 
-      <Container className="mt-1">
+      <Container className="mt-1 homeTextCenter">
         <Row className="d-flex , justify-content-start">
           <Col md={6} className=" text-white p-3">
             <p
@@ -35,7 +35,7 @@ const Header_02 = () => {
           </Col>
         </Row>
       </Container>
-      <Container className=" globalCommunity ">
+      <Container className=" globalCommunity homeTextCenter">
         <Row className="d-flex , justify-content-center">
           <Col md={14} className=" text-white p-3">
             <p
@@ -89,7 +89,7 @@ const Header_02 = () => {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className="homeTextCenter">
         <Row className="d-flex , justify-content-center mt-5">
           <Col md={10}>
             <p
@@ -119,7 +119,7 @@ const Header_02 = () => {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className="homeTextCenter">
         <Row className="d-flex , justify-content-center mt-5 gap-3">
           <Col md={3} className="fairFlexibleAndFun">
             <div class="Icon  Icon--black ">
@@ -174,7 +174,7 @@ const Header_02 = () => {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className="homeTextCenter">
         <Row className="d-flex , justify-content-center mt-5 gap-3">
           <Col md={10}>
             <p style={{ color: "#29CD9C", fontWeight: "700" }}>

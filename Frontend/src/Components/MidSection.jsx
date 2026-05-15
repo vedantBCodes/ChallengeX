@@ -8,7 +8,7 @@ import level3Image from '../Images/MidSectionImages/level3Image.png'
 const MidSection = () => {
   return (
     <>
-    <Container className='midsectionContainer'>
+    <Container className='midsectionContainer homeTextCenter'>
         <Row>
             <Col md={12}>
             <h1 style={{fontWeight:'bolder',color:'#29CD9C',fontSize:'30px',position:'relative',top:'10px'}}>U N L O C K&nbsp;&nbsp;&nbsp;Y O U R&nbsp;&nbsp;&nbsp;P O T E N T I A L</h1>
