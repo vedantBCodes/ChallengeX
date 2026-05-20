@@ -1,62 +1,60 @@
 import './contactform.css';
-import emailjs from 'emailjs-com';
-import { useRef } from 'react';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation, useNavigate } from "react-router-dom";
-import { EMAILJS } from "../../config/emailjsConfig";
+import { API_BASE_URL } from "../../config/api";
 
 
 const ContactForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  const form = useRef();
-  const sendEmail = (e) => {
+  const submitContactMessage = async (e) => {
     e.preventDefault();
-  
-    // Show pending toast
-    const toastId = toast.loading('📨 Sending your message...');
-  
-    emailjs.sendForm(
-      EMAILJS.contact.serviceId,
-      EMAILJS.contact.templateId,
-      form.current,
-      EMAILJS.contact.publicKey
-    )
-      .then((result) => {
-          console.log(result.text);
-          toast.update(toastId, {
-            render: '✅ Email sent successfully!',
-            type: 'success',
-            isLoading: false,
-            closeButton: false,
-            autoClose: 3000,
-          });
-          form.current.reset();
-          setTimeout(()=> {
-            navigate(from, { replace: true });
-          },3100)
-      }, (error) => {
-          console.log(error.text);
-          toast.update(toastId, {
-            render: '❌ Failed to send email. Please try again.',
-            type: 'error',
-            isLoading: false,
-            autoClose: 3000,
-          });
+
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    const toastId = toast.loading('Saving your message...');
+
+    try {
+      await axios.post(`${API_BASE_URL}/contact`, payload);
+      toast.update(toastId, {
+        render: 'Message submitted successfully!',
+        type: 'success',
+        isLoading: false,
+        closeButton: false,
+        autoClose: 3000,
       });
+      e.currentTarget.reset();
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 3100);
+    } catch (error) {
+      console.log(error.response?.data?.message || error.message);
+      toast.update(toastId, {
+        render: error.response?.data?.message || 'Failed to submit message. Please try again.',
+        type: 'error',
+        isLoading: false,
+        autoClose: 3000,
+      });
+    }
   };
   
 
   return (
     <div className="form-container">
-      <form ref={form} onSubmit={sendEmail} className="contact-form">
+      <form onSubmit={submitContactMessage} className="contact-form">
         <label>
           <strong>Name</strong>
           <input
             type="text"
-            name="user_name"
+            name="name"
             placeholder="Enter your Name :"
             required
           />
@@ -66,7 +64,7 @@ const ContactForm = () => {
           <strong>E-Mail</strong>
           <input
             type="email"
-            name="user_email"
+            name="email"
             placeholder="Enter Email Address :"
             required
           />

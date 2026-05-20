@@ -125,102 +125,101 @@ const onSubmit = async (data) => {
 
   return (
     <div className="signup-container">
-      <div className="signup-box">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="close-button-container">
-            <Link to="/" className="close-button">✕</Link>
-          </div>
+      <div className="signup-page">
+        <section className="signup-intro">
+          <p>START EARNING TODAY</p>
+          <h1>Create your ChallengeX account.</h1>
+          <span>
+            Sign up to unlock tasks, track your progress, and start earning from the challenges you complete.
+          </span>
+        </section>
 
-          <h3 style={{ color: 'blue' }}>Signup</h3>
+        <div className="signup-box">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="close-button-container">
+              <Link to="/" className="close-button">✕</Link>
+            </div>
 
-          {/* Fullname Field */}
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              type="text"
-              placeholder="Enter your fullname"
-              {...register("fullname", { required: true })}
-            />
-            {errors.fullname && <p className="error">This field is required</p>}
-          </div>
+            <h3 style={{ color: 'blue' }}>Signup</h3>
 
-          {/* Email Field */}
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              {...register("email", { required: true })}
-            />
-            {errors.email && <p className="error">This field is required</p>}
-          </div>
-          <div className="form-group">
-            <label>Phone Number</label>
-            <input
-              type="number"
-              placeholder="Enter your Phone Number"
-              {...register("phoneno", { required: true })}
-            />
-            {errors.phoneno && <p className="error">This field is required</p>}
-          </div>
-
-          {/* Phone Number Field */}
-          {/* <div className="form-group">
-            <label>Phone Number</label>
-            <input
-              type="number"
-              placeholder="Enter your Phone Number"
-              {...register("phoneno", { required: true })}
-            />
-            {errors.phoneno && <p className="error">This field is required</p>}
-          </div> */}
-
-          {/* UPI ID Field */}
-          <div className="form-group">
-            <label>UPI ID</label>
-            <input
-              type="text"
-              placeholder="Enter your UPI ID"
-              {...register("upiid", { required: true })}
-            />
-            {errors.upiid && <p className="error">This field is required</p>}
-          </div>
-
-          {/* Password Field */}
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              {...register("password", { required: true })}
-            />
-            {errors.password && <p className="error">This field is required</p>}
-          </div>
-
-          {/* Submit Button */}
-          <div className="form-actions">
-            <button type="submit">Send OTP</button>
-          </div>
-        </form>
-
-        {/* OTP Verification Form (only shown after OTP is sent) */}
-        {step === 2 && (
-          <form onSubmit={handleOtpSubmit}>
+            {/* Fullname Field */}
             <div className="form-group">
-              <label>Enter OTP</label>
+              <label>Name</label>
               <input
                 type="text"
-                placeholder="Enter OTP"
-                {...register("otp", { required: true })}
+                placeholder="Enter your fullname"
+                {...register("fullname", { required: true })}
               />
-              {errors.otp && <p className="error">OTP is required</p>}
+              {errors.fullname && <p className="error">This field is required</p>}
             </div>
 
+            {/* Email Field */}
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                {...register("email", { required: true })}
+              />
+              {errors.email && <p className="error">This field is required</p>}
+            </div>
+            <div className="form-group">
+              <label>Phone Number</label>
+              <input
+                type="number"
+                placeholder="Enter your Phone Number"
+                {...register("phoneno", { required: true })}
+              />
+              {errors.phoneno && <p className="error">This field is required</p>}
+            </div>
+
+            {/* UPI ID Field */}
+            <div className="form-group">
+              <label>UPI ID</label>
+              <input
+                type="text"
+                placeholder="Enter your UPI ID"
+                {...register("upiid", { required: true })}
+              />
+              {errors.upiid && <p className="error">This field is required</p>}
+            </div>
+
+            {/* Password Field */}
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                {...register("password", { required: true })}
+              />
+              {errors.password && <p className="error">This field is required</p>}
+            </div>
+
+            {/* Submit Button */}
             <div className="form-actions">
-              <button type="submit">Verify OTP</button>
+              <button type="submit">Send OTP</button>
             </div>
           </form>
-        )}
+
+          {/* OTP Verification Form (only shown after OTP is sent) */}
+          {step === 2 && (
+            <form onSubmit={handleOtpSubmit}>
+              <div className="form-group">
+                <label>Enter OTP</label>
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  {...register("otp", { required: true })}
+                />
+                {errors.otp && <p className="error">OTP is required</p>}
+              </div>
+
+              <div className="form-actions">
+                <button type="submit">Verify OTP</button>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );

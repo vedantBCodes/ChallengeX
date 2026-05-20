@@ -1,7 +1,10 @@
 import React from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 const Header_02 = () => {
+  const [authUser] = useAuth();
+
   return (
     <>
      <div className="headerContainer homeTextCenter">
@@ -31,7 +34,9 @@ const Header_02 = () => {
           </Col>
           <Col md={5} className="p-3">
             {" "}
-            <Button id="earningBtn">Start Earning Today</Button>
+            <Button id="earningBtn" as={Link} to={authUser ? "/task" : "/signup"}>
+              Start Earning Today
+            </Button>
           </Col>
         </Row>
       </Container>
@@ -177,11 +182,11 @@ const Header_02 = () => {
       <Container className="homeTextCenter">
         <Row className="d-flex , justify-content-center mt-5 gap-3">
           <Col md={10}>
-            <p style={{ color: "#29CD9C", fontWeight: "700" }}>
+            <p className="sectionLabel" style={{ color: "#29CD9C", fontWeight: "700" }}>
               F L E X I B L E &nbsp; S C H E D U L E
             </p>
             <h2 style={{ fontWeight: "900" }}>Work from anywhere, anytime.</h2>
-            <p style={{ color: "#d1d1d1" }}>
+            <p className="scheduleDescription" style={{ color: "#d1d1d1" }}>
               Enjoy the safety & flexibility of working remotely. All you need
               is a computer & internet.
             </p>

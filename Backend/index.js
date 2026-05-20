@@ -10,6 +10,8 @@ import userRoute from "./route/user.route.js";
 import taskRoute from "./route/task.route.js";
 import otpRoutes from "./route/otpRoutes.js"; // Adjust path if needed
 import upiRoute from "./route/upi.route.js";
+import contactRoute from "./route/contact.route.js";
+import subscriberRoute from "./route/subscriber.route.js";
 
 // Configure environment variables
 dotenv.config();
@@ -42,6 +44,8 @@ app.use("/task", taskRoute);
 app.use("/user", userRoute);
 app.use("/otp", otpRoutes);
 app.use("/upi", upiRoute);
+app.use("/contact", contactRoute);
+app.use("/subscribe", subscriberRoute);
 
 // Start server
 const PORT = process.env.PORT || 4000;

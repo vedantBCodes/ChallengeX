@@ -46,45 +46,55 @@ function Login({ onClose }) {
 
   return (
     <div className="login-modal">
-      <div className="login-box">
-    <div className="close-button-container">
-      <Link to="/" onClick={onClose} className="close-button">✕</Link>
+      <div className="login-page">
+        <section className="login-intro">
+          <p>WELCOME BACK</p>
+          <h1>Continue your ChallengeX journey.</h1>
+          <span>
+            Log in to access your tasks, continue your progress, and keep earning from challenges you complete.
+          </span>
+        </section>
+
+        <div className="login-box">
+          <div className="close-button-container">
+            <Link to="/" onClick={onClose} className="close-button">✕</Link>
+          </div>
+
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h3 style={{color:'blue'}}>Login</h3>
+
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                {...register("email", { required: true })}
+              />
+              {errors.email && <span className="error">This field is required</span>}
+            </div>
+
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                {...register("password", { required: true })}
+              />
+              {errors.password && <span className="error">This field is required</span>}
+            </div>
+
+            <div className="form-actions">
+              <button type="submit">Login</button>
+            </div>
+
+            <div className="signup-link">
+              <span>Not registered? </span>
+              <Link to="/signup">Signup</Link>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h3 style={{color:'blue'}}>Login</h3>
-  
-      <div className="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          {...register("email", { required: true })}
-        />
-        {errors.email && <span className="error">This field is required</span>}
-      </div>
-  
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          {...register("password", { required: true })}
-        />
-        {errors.password && <span className="error">This field is required</span>}
-      </div>
-  
-      <div className="form-actions">
-        <button type="submit">Login</button>
-      </div>
-  
-      <div className="signup-link">
-        <span>Not registered? </span>
-        <Link to="/signup">Signup</Link>
-      </div>
-    </form>
-    </div>
-  </div>
     );
 }
 

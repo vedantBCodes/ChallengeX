@@ -1,19 +1,54 @@
 /* login.css */
 .login-modal {
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f8f8;
+    min-height: calc(100vh - 80px);
+    padding: 48px 24px;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.92)),
+      url("../Images/headerBgImage3.jpg") center / cover no-repeat;
   }
+
+  .login-page {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 390px;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .login-intro {
+    text-align: left;
+  }
+
+  .login-intro p {
+    color: #29CD9C;
+    font-weight: 800;
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+  }
+
+  .login-intro h1 {
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+
+  .login-intro span {
+    display: block;
+    max-width: 520px;
+    color: #666;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
   .login-box
   {
-    width: 350px;
+    width: 100%;
     padding: 20px;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 100px;
+    position: relative;
     border-radius: 10px;
   }
   
@@ -88,5 +123,29 @@
   .signup-link {
     text-align: center;
     margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .login-modal {
+      padding: 28px 16px;
+    }
+
+    .login-page {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .login-intro {
+      text-align: center;
+    }
+
+    .login-intro h1 {
+      font-size: 32px;
+    }
+
+    .login-intro span {
+      max-width: none;
+      font-size: 17px;
+    }
   }
   

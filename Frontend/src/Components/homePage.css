@@ -314,11 +314,13 @@ form input[type="search"] {
 }
 #joinNowBtn
   {
+    display: inline-block;
     color: blue;
     border: 1px solid blue;
     background-color: white;
     padding: 10px;
     border-radius: 5px;
+    text-decoration: none;
    
   }
   #joinNowBtn:hover
@@ -362,7 +364,7 @@ form input[type="search"] {
   }
 .midsectionContainer
 {
-  width: 100vw;
+  width: 100%;
 }
 .midsectionContainer  img
   {
@@ -400,6 +402,50 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
 .fairFlexibleAndFun p
 {
     font-size: 17px;
+}
+
+.sectionLabel {
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+.scheduleDescription {
+  color: #727272 !important;
+}
+
+@media (max-width: 768px) {
+  .globalCommunity {
+    margin-top: 24px;
+  }
+
+  .fairFlexibleAndFun {
+    margin: 0 14px;
+  }
+
+  .midsectionContainer {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .midsectionContainer h1.sectionLabel {
+    font-size: 24px !important;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .midsectionSubContainer {
+    gap: 42px;
+  }
+
+  .midsectionSubContainer > div {
+    width: 100%;
+  }
+
+  .midsectionSubContainer > div > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
 }
 /* start ---> CSS style for the 12 tasks section */
 .card-wrapper {
@@ -466,6 +512,19 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
 #emailInput::placeholder {
   color: blue;
 }
+
+.newsletterInlineForm,
+.footerSubscribeForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footerSubscribeForm input[type="email"] {
+  min-width: 240px;
+}
 /* @media (max-width: 768px) {
   #emailInput
 {
@@ -513,4 +572,3 @@ box-shadow: 2px 2px 2px 2px rgb(209, 209, 209);
   box-shadow: 2px 2px 2px 2px white;
   transition: 0.5s;
 }
-

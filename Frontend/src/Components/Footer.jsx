@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container,Col,Row } from 'react-bootstrap'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 import emailIcon from '../Images/emailIcon.png'
 import "./homePage.css";
 import heartLogo from '../Images/heartlogo.png'
@@ -9,21 +11,63 @@ import facebookLogo from '../Images/SocialMediaIcons/facebookIcon2.svg'
 import githubIcon from '../Images/SocialMediaIcons/githubIcon2.png'
 import twitterIcon from '../Images/SocialMediaIcons/twitterIcon2.svg'
 import youtubeIcon from '../Images/SocialMediaIcons/youtubeIcon2.svg'
+import { API_BASE_URL } from '../config/api'
 
 const Footer = () => {
+  const [articleEmail, setArticleEmail] = useState("");
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+
+  const subscribe = async (email, source, reset) => {
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if (!normalizedEmail) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+
+    const toastId = toast.loading("Subscribing...");
+
+    try {
+      await axios.post(`${API_BASE_URL}/subscribe`, {
+        email: normalizedEmail,
+        source,
+      });
+      toast.success("Subscribed successfully!", { id: toastId });
+      reset();
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Subscription service is unavailable right now.",
+        { id: toastId }
+      );
+    }
+  };
+
   return (
    <>
     <Container className="mt-1 mb-3 text-align-center " >
         <Row className='d-flex justify-content-center align-items-center'>
           <Col md={8}  className='p-5 pt-3 pb-4' style={{backgroundColor:'rgb(223, 231, 222)',borderRadius:'10px'}}>
           <img src={emailIcon} alt="" width={50}/>
-          <p style={{color:'rgb(109, 214, 107)',fontSize:'20px'}}>Save this article</p>
-          <p>Enter your email address and we'll send straight to your inbox .</p>
-          <div>  
-            <input type="email" placeholder='Email Address' id="emailInput" /> &nbsp;
-            <button  id='emailBtn'>SEND</button>
-            </div>     
-          <div><input type="checkbox" id='checkbox' style={{width:'25px'}}/><label htmlFor="checkbox" id="footerCheckbox">Send me new released tasks from the Work at Home</label></div>
+          <p style={{color:'rgb(109, 214, 107)',fontSize:'20px'}}>Get new tasks in your inbox</p>
+          <p>Subscribe for new ChallengeX tasks, rewards, and project updates.</p>
+          <form
+            className="newsletterInlineForm"
+            onSubmit={(e) => {
+              e.preventDefault();
+              subscribe(articleEmail, "footer-task-updates", () => setArticleEmail(""));
+            }}
+          >
+            <input
+              type="email"
+              placeholder='Email Address'
+              id="emailInput"
+              value={articleEmail}
+              onChange={(e) => setArticleEmail(e.target.value)}
+              required
+            /> &nbsp;
+            <button id='emailBtn' type="submit">SUBSCRIBE</button>
+          </form>
+          <div><input type="checkbox" id='checkbox' style={{width:'25px'}}/><label htmlFor="checkbox" id="footerCheckbox">Send me new released tasks from ChallengeX</label></div>
           </Col>
         </Row>
       </Container>
@@ -34,8 +78,24 @@ const Footer = () => {
           <Col md={6}>
           <p style={{fontSize:'40px',color:'white'}}>Don't miss out</p>
             <p style={{fontSize:'25px',color:'white'}}>Sign up to stay updated on the latest in technology</p>
-        <input type="email" placeholder="   &#9993;  Email Address"  name="email" required style={{padding:'10px 20px',borderRadius:'5px'}}/>  &nbsp;&nbsp;
-        <input type="submit" name="Subscribe to ChallengeX" value="Subscribe To ChallengeX" class="subscribeBox"/> <br /> <br />
+        <form
+          className="footerSubscribeForm"
+          onSubmit={(e) => {
+            e.preventDefault();
+            subscribe(newsletterEmail, "footer-main-newsletter", () => setNewsletterEmail(""));
+          }}
+        >
+          <input
+            type="email"
+            placeholder="   &#9993;  Email Address"
+            name="email"
+            value={newsletterEmail}
+            onChange={(e) => setNewsletterEmail(e.target.value)}
+            required
+            style={{padding:'10px 20px',borderRadius:'5px'}}
+          />  &nbsp;&nbsp;
+          <input type="submit" name="Subscribe to ChallengeX" value="Subscribe To ChallengeX" className="subscribeBox"/>
+        </form> <br />
         <p style={{fontSize:'17px',color:'white'}}>We're committed to your privacy. ChallengeX uses the information you provide to us to contact you about our relevant
       content, products, and services. You may unsubscribe from these communications at any time.</p>
           </Col>
