@@ -22,6 +22,8 @@ import { API_BASE_URL } from '../config/api';
 function TasksPage_03() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [cardData, setCardData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
 
   const imageMap = {
     quizGameImage,
@@ -42,10 +44,14 @@ function TasksPage_03() {
     useEffect(() => {
       const getTask = async () => {
         try {
-          const res = await axios.get(`${API_BASE_URL}/task`)
+          setLoadError("");
+          const res = await axios.get(`${API_BASE_URL}/task`);
           setCardData(res.data);
         } catch (error) {
           console.log(error);
+          setLoadError("Tasks are taking longer than expected. Please refresh in a moment.");
+        } finally {
+          setIsLoading(false);
         }
       };
       getTask();
@@ -66,6 +72,29 @@ function TasksPage_03() {
         <Button variant="success" className="mx-1" onClick={() => handleSlide(1)}>Level-2 Tasks</Button>
         <Button variant="danger" className="mx-1" onClick={() => handleSlide(2)}>Level-3 Tasks</Button>
       </div>
+      {isLoading ? (
+        <div className="taskLoadingState">
+          <div className="taskSpinner" aria-hidden="true"></div>
+          <h3>Loading tasks...</h3>
+          <p>Waking up the task service and fetching the latest challenges.</p>
+          <div className="taskSkeletonGrid">
+            {[1, 2, 3, 4].map((item) => (
+              <div className="taskSkeletonCard" key={item}>
+                <div className="taskSkeletonImage"></div>
+                <div className="taskSkeletonLine taskSkeletonTitle"></div>
+                <div className="taskSkeletonLine"></div>
+                <div className="taskSkeletonLine short"></div>
+                <div className="taskSkeletonButton"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : loadError ? (
+        <div className="taskErrorState">
+          <h3>Tasks could not load</h3>
+          <p>{loadError}</p>
+        </div>
+      ) : (
       <Row className="justify-content-center g-2">
         {visibleCards.map((card) => (
           <Col key={card._id || card.id} xs={12} sm={6} md={4} lg={3} xl={3} className="mb-4 d-flex align-items-stretch" style={{ minWidth: '250px', maxWidth: '300px' }}>
@@ -82,6 +111,7 @@ function TasksPage_03() {
           </Col>
         ))}
       </Row>
+      )}
     </Container>
   );
 }
